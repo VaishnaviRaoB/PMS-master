@@ -20,32 +20,10 @@
     	<h1 style="margin-left: 30px; font-size: 64px;"><b> </b><br> PLACEMENT <br><b> MANAGEMENT </b><br> SYSTEM</h1> <br>
         <!-- <img src="images/logo1.png" width="550px"> -->
     </div>
-    <div id="users" style="z-index: 1; position: relative; margin-top: 130vh;">
-            <h1 align="center"><u>USERS</u></h1> <br> <br>
-            <a href="login.php" class="btn btn-outline-light my-2 my-sm-0" style="border-radius: 50px; border-width: 2px; font-weight: bold;" id="loginnav">LOGIN</a>
-        <div class="container">
-        <div class="card-group">
-          <div class="card" style="width: 400px; background: none; border: none;" align="center">
-            <img src="images/admin1.svg" class="card-img-top" alt="..." style="width: 400px;">
-            <div class="card-body">
-              <h2 class="card-title" align="center"><a href="login.php">Admin</a></h5>
-              <p class="card-text"><small class="text-muted">Placement Officer</small></p>
-            </div>
-          </div>
-          <div class="card" style="width: 400px; background: none; border: none;" align="center">
-            <img src="images/student1.svg" class="card-img-top" alt="..." style="width: 410px; margin-top: 10px;"> <br> 
-            <div class="card-body">
-              <h2 class="card-title" align="center"><a href="login.php">User</a></h5>
-              <p class="card-text"><small class="text-muted">Student</small></p>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-      
+
       <div id="contact" style="z-index: 1; position: absolute; margin-left:2%; margin-top: 30vh;">
             <div class="form-row">
-             <div class="form-group" style="margin-left:270px; margin-top: 200px;"> 
+             <div class="form-group" style="margin-left:270px; margin-top: 900px;"> 
                 <h1>Contact Us</h1>
                 <p class="lead">&nbsp;<i class="fas fa-mobile"></i>&nbsp; (+91) 1234567890</p>
                 <p class="lead">&nbsp;<i class="fas fa-at"></i>&nbsp; admin@gmail.com</p>
