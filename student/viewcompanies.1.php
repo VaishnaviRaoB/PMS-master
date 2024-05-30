@@ -17,7 +17,7 @@
        <form>
      <!-- <img src="images/1.jpg"> -->
      <div class="table-responsive">
-    <table class="table table-hover table-borderless table-dark">
+    <table class="table table-hover table-borderless table-light">
       <thead>
         <tr>
           <th scope="col">Company Name</th>
@@ -38,7 +38,7 @@
                   echo '<tr>';
                     echo '<td>'.$row['name'].'</td>';
                     echo '<td>'.$row['type'].'</td>';
-                    echo '<td>'.$row['website'].'</td>';
+                    echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
                     echo '<td>'.$row['number'].'</td>';
                     echo '<td>'.$row['status'].'</td>';
                   echo '</tr>';

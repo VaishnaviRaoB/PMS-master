@@ -18,7 +18,7 @@
      <!-- <img src="images/1.jpg"> -->
    
      <div class="table-responsive">
-    <table class="table table-hover table-borderless table-dark">
+    <table class="table table-hover table-borderless table-light">
       <thead>
         <tr>
           <th scope="col">ID</th>
