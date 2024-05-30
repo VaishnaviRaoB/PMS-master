@@ -14,10 +14,10 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php">Admin</a>
+        <a class="nav-link" href="login.php">Admin</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php">Student</a>
+        <a class="nav-link" href="login.php">Student</a>
       </li>
       <li class="nav-item" id="about">
         <a class="nav-link" href="about.php">About Us</a>
