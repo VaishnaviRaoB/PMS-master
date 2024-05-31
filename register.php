@@ -44,9 +44,9 @@
 		      <div class="center one">
 		        <div class="form-row">
 		        	
-			        <div class="form-group col-md-5">
-			          <label for="cname">Username okay</label>
-								<input type="text" class="form-control" id="cname" name="username" required>
+			        <div class="form-group col-md-5 mx-5 sx-5" style="position:relative;left:4rem;">
+			          <label for="cname">Username</label>
+								<input type="text" class="form-control " id="cname" name="username" required>
 								<div class="invalid-feedback">
 									Enter Username
 								</div>
