@@ -7,7 +7,7 @@
     <title>Document</title>
     <!-- <link rel="stylesheet" type="text/css" href="css/addcomp.css"> -->
     <?php include_once 'includes/head.php' ?>
-
+    
 </head>
 <body>
 
@@ -38,7 +38,8 @@
                   echo '<tr>';
                     echo '<td>'.$row['fname'].'</td>';
                     echo '<td>'.$row['phone'].'</td>';
-                    echo '<td>'.$row['email'].'</td>';
+                    $gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" . urlencode($row['email']);
+                    echo '<td><a href="'.$gmailUrl.'" target="_blank">'.$row['email'].'</a></td>';
                     echo '<td>'.$row['uname'].'</td>';
                     echo '<td>'.$row['course'].'</td>';
                     
