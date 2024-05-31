@@ -21,7 +21,7 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <a href="login.php" class="btn btn-outline-light my-2 my-sm-0" style="border-radius: 50px; border-width: 2px; font-weight: bold;" id="loginnav">LOGIN</a>
-      <a href="register.php" class="btn btn-outline-light my-2 my-sm-0" style="border-radius: 50px; border-width: 2px; font-weight: bold;" id="registernav">Sign In</a>
+      <a href="register.php" class="btn btn-outline-light my-2 my-sm-0" style="border-radius: 50px; border-width: 2px; font-weight: bold;" id="registernav">SIGN IN</a>
     </form>
     
   </div>

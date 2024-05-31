@@ -22,7 +22,7 @@
 				$uname = $_POST['username'];
 				$fname = $_POST['fname'];
 				$lname = $_POST['lname'];
-				$email = $_POST['mailid'];
+				$email = $_POST['email'];
 				$phone = $_POST['phone'];
 				$pwd1 = $_POST['pwd1'];
 				$pwd2 = $_POST['pwd2'];
@@ -61,8 +61,8 @@
 		        </div>
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
-			          <label for="cid">Mail-ID</label>
-			          <input type="text" class="form-control" id="cid" name="mailid" placeholder="Mail-ID">
+			          <label for="cname">Mail-ID</label>
+			          <input type="text" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cname" name="email" placeholder="Mail-ID">
 			        </div>
 			        <div class="form-group col-md-5">
 			          <label for="cname">Phone</label>

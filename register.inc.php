@@ -28,7 +28,7 @@
                 $uname = $_POST['username'];
                 $fname = $_POST['fname'];
                 $lname = $_POST['lname'];
-                $email = $_POST['mailid'];
+                $email = $_POST['email'];
                 $phone = $_POST['phone'];
                 $pwd1 = $_POST['pwd1'];
                 $pwd2 = $_POST['pwd2'];
