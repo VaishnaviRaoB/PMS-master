@@ -14,7 +14,7 @@
     <img src="images/ppl.png" width="660px" style="position: absolute; z-index: 1; margin-left: 50%; margin-top: 10%;">
     	<?php include_once 'includes/nav.php' ?>
     <div class="content" style="margin-top: 20px; margin-left: -40px;">
-    	<h1 class="form-row justify-content-center" style="margin-left: 60px;">Student SignUp</h1> <br>
+    	<h1 class="form-row justify-content-center" style="margin-left: 60px;">SignUp</h1> <br>
     	<div style="position: absolute; z-index: 1;">
     		<?php 
 			include_once 'includes/db.inc.php';
@@ -45,7 +45,7 @@
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
 			          <label for="cid">Student ID</label>
-			          <input type="text" class="form-control" id="cid" name="cid" placeholder="Student ID" readonly>
+			          <input type="text" class="form-control" id="cid" name="cid"  readonly>
 			        </div>
 			        <div class="form-group col-md-5">
 			          <label for="cname">Username</label>
@@ -73,8 +73,8 @@
 		        </div>
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
-			          <label for="cid">Mail-ID</label>
-			          <input type="email" class="form-control" id="cid" name="mailid" required>
+					<label for="cid">Mail-ID</label>
+					<input type="email" class="form-control" id="cid" name="mailid"  required>
 								<div class="invalid-feedback">
 									Enter Valid Mail-ID
 								</div>
@@ -96,8 +96,8 @@
 								</div>
 			        </div>
 			        <div class="form-group col-md-5">
-			          <label for="cname">Confirm Password</label>
-			          <input type="password" class="form-control" id="cname" name="pwd2" required>
+			          <label for="cid">Confirm Password</label>
+			          <input type="password" class="form-control" id="cid" name="pwd2" required>
 								<div class="invalid-feedback">
 									Re-Enter Password
 								</div>
