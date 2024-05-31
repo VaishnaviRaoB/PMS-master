@@ -39,7 +39,7 @@
 		<form action="register.inc.php" autocomplete="off" method="POST">
 			<input type="text" style="display: none;" autocomplete="false">
 			<input type="password" style="display: none;" autocomplete="false">
-			<input type="email" style="display: none;" autocomplete="false">
+			<input type="email" style="display: non;" autocomplete="false">
 		    <div class="row justify-content-center align-items-baseline">
 		      <div class="center one">
 		        <div class="form-row">
