@@ -45,7 +45,7 @@
 		        <div class="form-row">
 		        	
 			        <div class="form-group col-md-5">
-			          <label for="cname">Username</label>
+			          <label for="cname">Username okay</label>
 								<input type="text" class="form-control" id="cname" name="username" required>
 								<div class="invalid-feedback">
 									Enter Username
