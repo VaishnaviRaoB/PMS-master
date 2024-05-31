@@ -12,7 +12,7 @@
     <div class="container" style="z-index: 2;">
         <h1 class="form-row justify-content-center">View Trainings</h1> <br>
         <div class="table-responsive">
-            <table class="table table-hover table-borderless table-dark">
+            <table class="table table-hover table-borderless table-light">
                 <thead>
                     <tr>
                         <th scope="col">Course</th>
