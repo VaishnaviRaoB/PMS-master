@@ -39,7 +39,7 @@
                   echo '<tr>';
                     echo '<td>'.$row['name'].'</td>';
                     echo '<td>'.$row['type'].'</td>';
-                    echo '<td>'.$row['website'].'</td>';
+                    echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
                     echo '<td>'.$row['number'].'</td>';
                     echo '<td>'.$row['status'].'</td>';
                     ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2024 at 05:27 PM
+-- Generation Time: May 31, 2024 at 05:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,7 +66,7 @@ CREATE TABLE `applied` (
 
 INSERT INTO `applied` (`id`, `name`, `company`, `status`, `chances`) VALUES
 (1, 'Mohith', 'Infosys', 'Attended', NULL),
-(2, 'Mohith', 'TCS', 'Selected\r\n', NULL),
+(2, 'Mohith', 'TCS', 'Selected', NULL),
 (3, 'Girish', 'Mobinius', 'Attended', NULL),
 (4, 'Girish', 'Infosys', 'Selected', NULL),
 (5, 'Naveen', 'Invensis Technologies Private Limited', 'Attended', NULL),
@@ -74,7 +74,8 @@ INSERT INTO `applied` (`id`, `name`, `company`, `status`, `chances`) VALUES
 (7, 'Vinay ', 'Qbix Intergrated Services', 'Attended', NULL),
 (9, 'Bharath', 'Invensis Technologies Private Limited', 'Attended', NULL),
 (12, 'Girish', 'Mobinius', 'Selected', NULL),
-(13, 'Girish', 'Cognizant Technology Solutions', 'Attended', NULL);
+(13, 'Girish', 'Cognizant Technology Solutions', 'Attended', NULL),
+(14, 'vinay', 'TCS', 'Applied', 'null');
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,8 @@ INSERT INTO `company` (`id`, `name`, `type`, `address`, `number`, `website`, `st
 (10, 'Qbix Intergrated Services', 'BPO', 'Anantheshwara Complex .3rd Floor, Jayamahal, Bangalore - 560046, Above Honda Activa Service Station,Next to SBI Bank', '9152333908', 'https://qbix.com', 'Active', '50'),
 (11, 'ASD India Services', 'BPO', 'Unit No 2201A, 22nd Floor, WTC Bangalore, Brigade Gateway, Rajajinagar Extension,Malleswaram, Bengaluru, Karnataka 560055', '99722 21716', 'http://www.asdindiaservices.com', 'Active', '50'),
 (12, 'Swan InfoSystems', 'BPO', 'No: 35 2nd & 3rd Floor Annapoorneshwari Towers,, Uttarahalli Main Road, Gowdana Palya, RR Layout, Padmanabhanagar, Bengaluru, Karnataka 560061', '98862 08887', 'https://swaninfosystems.in', 'Active', '60'),
-(13, 'ABC', 'IT', '#5et5hv', '8965456789', 'https://ab.com', 'Active', '0');
+(13, 'ABC', 'IT', '#5et5hv', '8965456789', 'https://ab.com', 'Active', '0'),
+(14, 'wipro', 'IT', '-------------------', '0000000000', 'wipro', 'Active', '0');
 
 -- --------------------------------------------------------
 
@@ -172,7 +174,8 @@ INSERT INTO `join_course` (`id`, `course_name`, `enrollment_date`, `student_name
 (19, 'Digital Marketing', '2024-03-23 16:24:30', 'Girish'),
 (20, 'Data Science', '2024-03-23 16:24:56', 'Girish'),
 (21, 'Data Science', '2024-03-23 16:25:39', 'Girish'),
-(22, 'Graphic Design', '2024-03-23 16:25:43', 'Girish');
+(22, 'Graphic Design', '2024-03-23 16:25:43', 'Girish'),
+(23, 'Web Development', '2016-12-31 18:30:00', 'vinay');
 
 -- --------------------------------------------------------
 
@@ -206,7 +209,9 @@ INSERT INTO `studentlogin` (`id`, `uname`, `pwd`, `fname`, `lname`, `email`, `ph
 (2, 'girishgv21', '12345', 'Girish', 'G V', 'girishgv21@gmail.com', '9742492316', 'Which is your Favourite Mobile Company?', 'Motorola', 'BCA', '78', '2019', '92', '72'),
 (7, 'mohith', '12345', 'Mohith', 'SB', 'mohith@gmail.com', '9876789865', 'Which is your First Phone?', 'Samsung', 'BCA', '82', '2019', NULL, NULL),
 (9, 'vinay', '12345', 'Vinay ', 'Kumar', 'vinay@gmail.com', '9089876789', 'Which is your First Phone?', 'Nokia', 'BBA', '76', '2019', '81', '73'),
-(10, 'bharath', '12345', 'Bharath', 'N', 'bharath@gmail.com', '9632629993', 'Which is your Favourite Mobile Company?', 'OnePlus', 'BCOM', '82', '2019', '59', '82');
+(10, 'bharath', '12345', 'Bharath', 'N', 'bharath@gmail.com', '9632629993', 'Which is your Favourite Mobile Company?', 'OnePlus', 'BCOM', '82', '2019', '59', '82'),
+(11, 'Ram', '123', 'Ram', 'S', 'abc@gmail.com', '1234567890', 'Which is Favourite Food?', 'maggie', NULL, NULL, NULL, NULL, NULL),
+(12, 'siya', '12345', 'siya', 'a', 'siya@gmail.com', '1234567890', 'Which is Favourite Food?', 'lays', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -299,13 +304,13 @@ ALTER TABLE `adminlogin`
 -- AUTO_INCREMENT for table `applied`
 --
 ALTER TABLE `applied`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `feed`
@@ -317,13 +322,13 @@ ALTER TABLE `feed`
 -- AUTO_INCREMENT for table `join_course`
 --
 ALTER TABLE `join_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `studentlogin`
 --
 ALTER TABLE `studentlogin`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `training`

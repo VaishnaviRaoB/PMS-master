@@ -21,11 +21,8 @@
 		    <div class="row justify-content-center align-items-baseline">
 		      <div class="center one">
 		        <div class="form-row">
-		        	<div class="form-group col-md-6">
-			          <label for="cid">Company ID</label>
-			          <input type="text" class="form-control" id="cid" name="cid" placeholder="Company ID" disabled>
-			        </div>
-			        <div class="form-group col-md-6">
+		        	
+			        <div class="form-group col-md-6 mx-5 sx-5" style="position:relative;left:4rem;">
 			          <label for="cname">Company Name</label>
 			          <input type="text" class="form-control" id="cname" name="cname" placeholder="Company Name" required>
 			        </div>
