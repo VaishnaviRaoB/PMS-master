@@ -74,7 +74,7 @@
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
 					<label for="cid">Mail-ID</label>
-					<input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cid" name="email"  required>
+					<input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cid" name="email"  required value=" " autocomplete="off">
 								<div class="invalid-feedback">
 									Enter Valid Mail-ID
 								</div>
