@@ -43,10 +43,7 @@
 		    <div class="row justify-content-center align-items-baseline">
 		      <div class="center one">
 		        <div class="form-row">
-		        	<div class="form-group col-md-5">
-			          <label for="cid">Student ID</label>
-			          <input type="text" class="form-control" id="cid" name="cid"  readonly>
-			        </div>
+		        	
 			        <div class="form-group col-md-5">
 			          <label for="cname">Username</label>
 								<input type="text" class="form-control" id="cname" name="username" required>
