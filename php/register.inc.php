@@ -94,7 +94,7 @@
 			        </div>
 		        </div>
 		        <div class="form-row justify-content-center">
-		        	<button type="submit" class="btn btn-dark col-md-5" name="signup" style="margin-left: -120px;">SignUp</button>
+		        	<button type="submit" class="btn btn-dark col-md-5" name="signup" style="margin-left: -120px;">SIGN UP</button>
 		        </div>
 		      </div>
 		    </div>
