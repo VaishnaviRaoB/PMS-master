@@ -15,14 +15,33 @@
     	<?php include_once 'include/nav.php' ?>
     <div class="content" style="margin-top: 20px; margin-left: -40px;">
     	<h1 class="form-row justify-content-center" style="margin-left: 60px;">Student SignUp</h1> <br>
+		<div style="position: absolute; z-index: 1;">
+    		<?php 
+			include_once 'includes/db.inc.php';
+			if (isset($_POST['signup'])) {
+				$uname = $_POST['username'];
+				$fname = $_POST['fname'];
+				$lname = $_POST['lname'];
+				$email = $_POST['email'];
+				$phone = $_POST['phone'];
+				$pwd1 = $_POST['pwd1'];
+				$pwd2 = $_POST['pwd2'];
+				$secque = $_POST['secque'];
+				$secans = $_POST['secans'];
+				echo $uname;
+				
+			}
+		?>
+    	</div>
     	<form action="php/register.inc.php" method="POST">
+		<form action="register.inc.php" autocomplete="off" method="POST">
+			<input type="text" style="display: none;" autocomplete="false">
+			<input type="password" style="display: none;" autocomplete="false">
+			<input type="email" style="display: none;" autocomplete="false">
 		    <div class="row justify-content-center align-items-baseline">
 		      <div class="center one">
 		        <div class="form-row">
-		        	<div class="form-group col-md-5">
-			          <label for="cid">Student ID</label>
-			          <input type="text" class="form-control" id="cid" name="cid" placeholder="Student ID" disabled>
-			        </div>
+		        	
 			        <div class="form-group col-md-5">
 			          <label for="cname">Username</label>
 			          <input type="text" class="form-control" id="cname" name="username" placeholder="Username">
@@ -41,11 +60,11 @@
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
 			          <label for="cid">Mail-ID</label>
-			          <input type="text" class="form-control" id="cid" name="mailid" placeholder="Mail-ID">
+			          <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cid" name="email"  required autocomplete="off">
 			        </div>
 			        <div class="form-group col-md-5">
 			          <label for="cname">Phone</label>
-			          <input type="text" class="form-control" id="cname" name="phone" placeholder="Phone">
+			          <input type="text" pattern="^(?!0+$)\d{10}$" class="form-control" id="cname" name="phone" placeholder="Phone">
 			        </div>
 		        </div>
 		        <div class="form-row">

@@ -29,10 +29,7 @@
 				$secque = $_POST['secque'];
 				$secans = $_POST['secans'];
 				echo $uname;
-				// if ($pwd1 == $pwd2) {
-				// 	$sql = "insert into studentlogin(uname, pwd, fname, lname, email, phone, secque, secans) values('$uname', '$pwd1', '$fname', '$lname', '$email', '$phone', '$secque', '$secans');";
-				// 	mysqli_query($conn, $sql);
-				// }
+				
 			}
 		?>
     	</div>
@@ -71,7 +68,7 @@
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
 					<label for="cid">Mail-ID</label>
-					<input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cid" name="email"  required value=" " autocomplete="off">
+					<input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cid" name="email"  required autocomplete="off">
 								<div class="invalid-feedback">
 									Enter Valid Mail-ID
 								</div>
