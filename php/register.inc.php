@@ -64,8 +64,8 @@
 		        </div>
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
-			          <label for="cname">Mail-ID</label>
-			          <input type="text" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cname" name="email" placeholder="Mail-ID" value="">
+			          <label for="cid">Mail-ID</label>
+			          <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cid" name="email" placeholder="Mail-ID" value="" autocomplete="off">
 			        </div>
 			        <div class="form-group col-md-5">
 			          <label for="cname">Phone</label>
