@@ -36,13 +36,16 @@
 			}
 		?>
     	</div>
-    	<form action="register.php" method="POST">
+		<form action="register.inc.php" autocomplete="off" method="POST">
+			<input type="text" style="display: none;" autocomplete="false">
+			<input type="password" style="display: none;" autocomplete="false">
+			<input type="email" style="display: none;" autocomplete="false">
 		    <div class="row justify-content-center align-items-baseline">
 		      <div class="center one">
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
 			          <label for="cid">Student ID</label>
-			          <input type="text" class="form-control" id="cid" name="cid" placeholder="Student ID" disabled>
+			          <input type="text" class="form-control" id="cid" name="cid" placeholder="Student ID" readonly>
 			        </div>
 			        <div class="form-group col-md-5">
 			          <label for="cname">Username</label>
@@ -51,7 +54,7 @@
 		        </div>
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
-			          <label for="cid">First Name</label>
+			          <label for="cname">First Name</label>
 			          <input type="text" class="form-control" id="cid" name="fname" placeholder="First Name">
 			        </div>
 			        <div class="form-group col-md-5">
@@ -62,11 +65,11 @@
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
 			          <label for="cname">Mail-ID</label>
-			          <input type="text" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cname" name="email" placeholder="Mail-ID">
+			          <input type="text" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" class="form-control" id="cname" name="email" placeholder="Mail-ID" value="">
 			        </div>
 			        <div class="form-group col-md-5">
 			          <label for="cname">Phone</label>
-			          <input type="text" class="form-control" id="cname" name="phone" placeholder="Phone">
+			          <input type="text" pattern="^(?!0+$)\d{10}$" class="form-control" id="cname" name="phone" placeholder="Phone">
 			        </div>
 		        </div>
 		        <div class="form-row">

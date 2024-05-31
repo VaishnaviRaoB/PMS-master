@@ -57,7 +57,7 @@
 		        </div>
 		        <div class="form-row">
 		        	<div class="form-group col-md-5">
-			          <label for="cid">First Name</label>
+			          <label for="cname">First Name</label>
 			          <input type="text" class="form-control" id="cid" name="fname" required>
 								<div class="invalid-feedback">
 									Enter First Name
@@ -81,7 +81,7 @@
 			        </div>
 			        <div class="form-group col-md-5">
 			          <label for="cname">Phone</label>
-			          <input type="tel" pattern="^\d{10}$" class="form-control" id="cname" name="phone" required>
+			          <input type="tel" pattern="^(?!0+$)\d{10}$" class="form-control" id="cname" name="phone" required>
 								<div class="invalid-feedback">
 									Enter Valid Phone Number
 								</div>
