@@ -103,7 +103,7 @@
         
     </style>
 </head>
-<<body>
+<body>
     <?php include_once 'includes/nav.php'; ?>
     <div class="container" style="z-index: 2;">
         <h1 class="form-row justify-content-center mt-4">Students Registered For Course</h1>
