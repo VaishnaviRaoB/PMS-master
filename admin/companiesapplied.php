@@ -116,7 +116,7 @@
         <h1 class="form-row justify-content-center mt-4">Companies Applied</h1>
         <div class="search-container mt-4">
             <form method="GET">
-                <input type="text" name="search" placeholder="Search Company by Name">
+                <input type="text" name="search" placeholder="Search Here">
                 <button type="submit">Search</button>
             </form>
         </div>

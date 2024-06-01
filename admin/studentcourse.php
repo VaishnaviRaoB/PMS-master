@@ -109,7 +109,7 @@
         <h1 class="form-row justify-content-center mt-4">Students Registered For Course</h1>
         <div class="search-container mt-4">
             <form method="GET">
-                <input type="text" name="search" placeholder="Search Course by Name">
+                <input type="text" name="search" placeholder="Search Here">
                 <button type="submit">Search</button>
             </form>
         </div>
