@@ -10,7 +10,7 @@
 </head>
 <body>
     <div>
-        <img id="img2" src="images/team.png" width="750px" style="position:relative; z-index: 1; margin-left: 50%; margin-top: 10vh; ">
+        <img id="img2" src="images/team.png" width="750px" style="position:absolute;z-index: 1; margin-left: 50%; margin-top: 10vh; ">
     </div>
     <img src="images/aboutbg.png" id="img1">
     	<?php include_once 'includes/nav.php' ?>
