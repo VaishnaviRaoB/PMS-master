@@ -49,6 +49,7 @@
             <table class="table table-hover table-borderless table-light">
                 <thead>
                     <tr>
+                    <th scope="col">ID</th>
                         <th scope="col">Student Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
@@ -69,6 +70,7 @@
                         if($rescheck > 0) {
                             while ($row = mysqli_fetch_assoc($res)) {
                                 echo '<tr>';
+                                echo '<td>'.$row['id'].'</td>';
                                     echo '<td>'.$row['fname'].'</td>';
                                     echo '<td>'.$row['phone'].'</td>';
                                     $gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" . urlencode($row['email']);
