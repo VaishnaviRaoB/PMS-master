@@ -43,17 +43,20 @@
         .table thead th {
             background-color: #f8f9fa;
             font-weight: bold;
+            width: 50px;
             border-bottom: 1px solid #dee2e6;
             border-top: 1px solid #dee2e6;
             border-right: 1px solid #dee2e6; /* Add vertical line */
         }
         .table thead th:first-child {
+          
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table thead th:last-child {
             border-right:1px solid #dee2e6 ; /* Remove vertical line after the last column */
         }
         .table td, .table th {
+            
             vertical-align: middle;
             border-right: 1px solid #dee2e6; /* Extend vertical line for entire column */
         }
@@ -64,13 +67,15 @@
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table td {
-            padding: 15px;
+            padding: 10px 10px ;
             border-bottom: 1px solid #dee2e6;
+            
         }
         .btn-sm {
-            padding: 5px 10px;
-            margin: 0 2px;
+            padding: 5px 5px;
+            margin: 0 0px;
             font-size: 0.8rem;
+            
         }
         .fas {
             font-size: 1em;
