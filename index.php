@@ -19,7 +19,7 @@
         <h1 style="margin-left: 30px; font-size: 64px;"><b> </b><br> PLACEMENT <br><b> MANAGEMENT </b><br> SYSTEM</h1> <br>
     </div>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="z-index:2; position:relative;top:50rem;">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  data-interval="2000" style="z-index:2; position:relative;top:50rem;">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
