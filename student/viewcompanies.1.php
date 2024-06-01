@@ -76,7 +76,6 @@ if (session_status() == PHP_SESSION_NONE) {
         .table td {
             padding: 10px 10px ;
             border-bottom: 1px solid #dee2e6; }
-        }
         .btn-sm {
             padding: 5px 5px;
             margin: 0 0px;
@@ -94,7 +93,6 @@ if (session_status() == PHP_SESSION_NONE) {
     </style>
 </head>
 <body>
-
 <div class="container" style="z-index: 2;">
     <h1 class="form-row justify-content-center mt-4">Companies</h1>
     <div class="search-container mt-4">

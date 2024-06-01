@@ -76,7 +76,6 @@ if (session_status() == PHP_SESSION_NONE) {
         .table td {
             padding: 10px 10px ;
             border-bottom: 1px solid #dee2e6; }
-        }
         .btn-sm {
             padding: 5px 5px;
             margin: 0 0px;
