@@ -111,7 +111,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         <th scope="col">Website</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Actions</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -134,10 +134,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                   echo '<td>'.$row['number'].'</td>';
                                   echo '<td>'.$row['status'].'</td>';
                                   ?>
-                                  <td>
-                                      <a href="editcomp.php?edit=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
-                                      <a href="php/crud.php?delete=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
-                                  </td>
+                                  
                                   <?php
                               echo '</tr>';
                           }
