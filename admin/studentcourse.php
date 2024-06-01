@@ -97,8 +97,8 @@
         .course-name {
             font-weight: bold;
             background-color: lightgray;
-            border: 3px solid black !important;
-            margin-bottom: 100px !important;
+            border: 2px solid black !important;
+            margin-bottom: 2px !important;
         }
         
     </style>
