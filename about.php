@@ -28,19 +28,6 @@
         
       });
     </script>
-    <div id="contact" style="z-index: 1; position: absolute; margin-left:2%; margin-top: 30vh;">
-        <div class="form-row">
-            <div class="form-group" style="margin-left:270px; margin-top: 900px;"> 
-                <div>
-                <h1>Contact Us</h1>
-                <p class="lead">&nbsp;<i class="fas fa-mobile"></i>&nbsp; (+91) 1234567890</p>
-                <p class="lead">&nbsp;<i class="fas fa-at"></i>&nbsp; admin@gmail.com</p>
-                </div>
-            </div>
-            <div class="form-group" >
-            <img src="images/contact.svg" alt="..." style="width: 600px; margin-left: 30%; margin-top: -15%;">
-            </div>
-        </div>
-    </div>
+    
 </body>
 </html>
