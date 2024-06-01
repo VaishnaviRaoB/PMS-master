@@ -8,8 +8,14 @@
     <!-- <link rel="stylesheet" type="text/css" href="css/font.css"> -->
     <link rel="stylesheet" type="text/css" href="css/reg.css">
     <?php include_once 'includes/head.php' ?>
+    <style>
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: black;
+        }
+    </style>
 </head>
-<body >
+<body>
     <img src="images/homeback1.png" id="img1">
     <div style="position: absolute; margin-left:56%; margin-top:175px;">
         <img src="images/task.svg" width="430px" style="z-index: 1;">
