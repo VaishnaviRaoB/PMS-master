@@ -100,13 +100,13 @@
             border-color: black;
         }
         .selected {
-            background-color: #28a745 !important; /* Green color for selected */
+            background-color: #45a049 !important; /* Green color for selected */
         }
         .attended {
-            background-color: #ffc107 !important; /* Yellow color for attended */
+            background-color: yellow !important; /* Yellow color for attended */
         }
         .applied {
-            background-color: #dc3545 !important; /* Red color for applied */
+            background-color: lightblue !important; /* Red color for applied */
         }
     </style>
 </head>
