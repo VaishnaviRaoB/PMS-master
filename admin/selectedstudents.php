@@ -49,14 +49,12 @@
             border-right: 1px solid #dee2e6; /* Add vertical line */
         }
         .table thead th:first-child {
-          
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table thead th:last-child {
-            border-right:1px solid #dee2e6 ; /* Remove vertical line after the last column */
+            border-right: 1px solid #dee2e6; /* Remove vertical line after the last column */
         }
         .table td, .table th {
-            
             vertical-align: middle;
             border-right: 1px solid #dee2e6; /* Extend vertical line for entire column */
         }
@@ -67,15 +65,13 @@
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table td {
-            padding: 10px 10px ;
+            padding: 10px 10px;
             border-bottom: 1px solid #dee2e6;
-            
         }
         .btn-sm {
             padding: 5px 5px;
             margin: 0 0px;
             font-size: 0.8rem;
-            
         }
         .fas {
             font-size: 1em;
@@ -89,7 +85,7 @@
 <body>
     <?php include_once 'includes/nav.php' ?>
     <div class="container" style="z-index: 2;">
-        <h1 class="form-row justify-content-center mt-4">Selected Students</Select></h1>
+        <h1 class="form-row justify-content-center mt-4">Selected Students</h1>
         <div class="search-container mt-4">
             <form method="GET">
                 <input type="text" name="search" placeholder="Search Here">
@@ -109,6 +105,8 @@
                 </thead>
                 <tbody>
                     <?php
+                        include_once 'includes/db.inc.php';
+
                         if(isset($_GET['search'])) {
                             $search = mysqli_real_escape_string($conn, $_GET['search']);
                             $sql = "SELECT * FROM applied WHERE status='Selected' AND name LIKE '%$search%';";

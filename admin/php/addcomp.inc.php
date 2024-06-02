@@ -14,6 +14,10 @@ if (isset($_POST['add'])) {
     $stmt1 = mysqli_prepare($conn, $sql1);
     mysqli_stmt_bind_param($stmt1, "sssssss", $cname, $ctype, $address, $phone, $website, $status, $minperc);
 
+<<<<<<< HEAD
+    if (!$res1) {
+        echo "<script>alert('Company could not be added'); window.location.replace('../addcompanies.php?result=fail');</script>";
+=======
     if (!mysqli_stmt_execute($stmt1)) {
         ?>
         <script>
@@ -21,13 +25,9 @@ if (isset($_POST['add'])) {
             window.location.replace("../addcompanies.php?result=fail");
         </script>
         <?php
+>>>>>>> 20d5b7aec4aa34131445c12a47fd816d051ba4f4
     } else {
-        ?>
-        <script>
-            alert("Company has been added successfully");
-            window.location.replace("../viewcompanies.php?result=success");
-        </script>
-        <?php
+        echo "<script>alert('Company has been added successfully'); window.location.replace('../viewcompanies.php?result=success');</script>";
     }
     mysqli_stmt_close($stmt1);
 }
@@ -42,6 +42,15 @@ if (isset($_POST['update'])) {
     $phone = $_POST['telephone'];
     $minperc = $_POST['minperc'];
 
+<<<<<<< HEAD
+    $sql = "UPDATE `company` SET `name`='$cname', `website`='$website', `address`='$address', `type`='$ctype', `status`='$status', `number`='$phone', `minperc`='$minperc' WHERE `name`='$cname';";
+    $res = mysqli_query($conn, $sql);
+
+    if (!$res) {
+        echo "<script>alert('Company could not be updated'); window.location.replace('../editcomp.php?result=fail');</script>";
+    } else {
+        echo "<script>alert('Company has been updated'); window.location.replace('../viewcompanies.php?result=success');</script>";
+=======
     $sql2 = "UPDATE `company` SET `name`=?, `website`=?, `address`=?, `type`=?, `status`=?, `number`=?, `minperc`=? WHERE `name`=?";
     $stmt2 = mysqli_prepare($conn, $sql2);
     mysqli_stmt_bind_param($stmt2, "ssssssss", $cname, $website, $address, $ctype, $status, $phone, $minperc, $cid);
@@ -60,9 +69,13 @@ if (isset($_POST['update'])) {
             window.location.replace("../viewcompanies.php?result=success");
         </script>
         <?php
+>>>>>>> 20d5b7aec4aa34131445c12a47fd816d051ba4f4
     }
     mysqli_stmt_close($stmt2);
 }
+<<<<<<< HEAD
+=======
 
 mysqli_close($conn);
+>>>>>>> 20d5b7aec4aa34131445c12a47fd816d051ba4f4
 ?>

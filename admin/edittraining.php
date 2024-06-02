@@ -23,20 +23,15 @@
                     include_once '../includes/db.inc.php';
 
                     if (isset($_GET['edit'])) {
-                        $id = $_GET['edit'];
-                        $sql = "SELECT * FROM training WHERE id='$id'";
+                        $course = $_GET['edit'];
+                        $sql = "SELECT * FROM training WHERE course='$course'";
                         $res = mysqli_query($conn, $sql);
-                        $rescheck = mysqli_num_rows($res);
-                        if ($rescheck > 0) {
-                            while ($row = mysqli_fetch_assoc($res)) {
+                        if (mysqli_num_rows($res) > 0) {
+                            $row = mysqli_fetch_assoc($res);
                     ?>
                                 <div class="form-group col-md-12">
-                                    <label for="cid">Course ID</label>
-                                    <input type="text" class="form-control" id="cid" name="cid" style="width: 270px;" value="<?php echo $row['id'] ?>" readonly>
-                                </div>
-                                <div class="form-group col-md-12">
                                     <label for="course">Course Name</label>
-                                    <input type="text" class="form-control" id="course" name="course" style="width: 270px;" value="<?php echo $row['course'] ?>">
+                                    <input type="text" class="form-control" id="course" name="course" style="width: 270px;" value="<?php echo $row['course'] ?>" readonly>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="lecturer">Lecturer Name</label>
@@ -62,12 +57,11 @@
                                     <button type="submit" class="btn" name="update" style="width: 150px; color: white; font-weight: bold; background: linear-gradient(to left, #6C63FF, #3F3D56);">Update Course</button>
                                 </div>
                     <?php
-                            }
                         } else {
-                            echo "No course found with that ID.";
+                            echo "No course found with that name.";
                         }
                     } else {
-                        echo "No course ID specified for editing.";
+                        echo "No course name specified for editing.";
                     }
                     ?>
                 </div>
@@ -75,11 +69,5 @@
         </form> 
     </div>
     <?php include_once 'includes/footer.php' ?>
-    <script>
-        var a = document.getElementById("telephone").value;
-        function f() {
-            if (a.length > 10) {
-                alert("Numbers must be equal to 10 digits");
-            }
-        }
-   
+</body>
+</html>
