@@ -22,7 +22,7 @@
     </div>
     <?php include_once 'includes/nav.php' ?>
     <div class="content" style="margin-top: 160px; margin-left: 10px;">
-        <h1 style="margin-left: 30px; font-size: 64px;"><b> </b><br> PLACEMENTs <br><b> MANAGEMENT </b><br> SYSTEM</h1> <br>
+        <h1 style="margin-left: 30px; font-size: 64px;"><b> </b><br> PLACEMENT <br><b> MANAGEMENT </b><br> SYSTEM</h1> <br>
     </div>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"  data-interval="2000" style="z-index:2; position:relative;top:50rem;">
