@@ -96,54 +96,50 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
     </style>
 </head>
 <body>
-<div class="container" style="z-index: 2;">
-    <h1 class="form-row justify-content-center mt-4">Companies</h1>
-    <div class="search-container mt-4">
-        <form method="GET">
-            <input type="text" name="search" placeholder="Search Here" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <div class="table-container">
-        <div class="table-responsive">
-            <table class="table table-hover table-borderless table-light">
-                <thead>
-                    <tr>
-                        <th scope="col">Company Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Website</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        $sql = "SELECT * FROM company ";
-                        if(isset($_GET['search'])) {
-                            $search = mysqli_real_escape_string($conn, $_GET['search']);
-                            $sql .= "WHERE name LIKE '%$search%' ";
-                        }
-                      
-                        
-                        $result = mysqli_query($conn, $sql);
-                        if(mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<tr>';
-                                echo '<td>'.$row['name'].'</td>';
-                                echo '<td>'.$row['type'].'</td>';
-                                echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
-                                echo '<td>'.$row['number'].'</td>';
-                                echo '<td>'.$row['status'].'</td>';
-                                echo '</tr>';
-                            }
-                        } else {
-                            echo '<tr><td colspan="5">No records found.</td></tr>';
-                        }
-                    ?>
-                </tbody>
-            </table>
+    <div class="container" style="z-index: 2;">
+        <h1 class="form-row justify-content-center mt-4">Companies</h1>
+        <div class="search-container mt-4">
+            <!-- Search form goes here -->
         </div>
+        <div class="table-container mt-4">
+            <div class="table-responsive">
+                <table class="table table-hover table-borderless table-light">
+                    <thead>
+                        <tr>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Company Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Website</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            // Modify the SQL query to filter data based on the current user's username
+                            $user = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+                            $sql = "SELECT applied.student_name, company.name AS company_name, company.type, company.website, company.number, applied.status FROM applied INNER JOIN company ON applied.company = company.name WHERE applied.student_name='$user';";
+                            $result = mysqli_query($conn, $sql);
+                            if(mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<tr>';
+                                    echo '<td>'.$row['student_name'].'</td>';
+                                    echo '<td>'.$row['company_name'].'</td>';
+                                    echo '<td>'.$row['type'].'</td>';
+                                    echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
+                                    echo '<td>'.$row['number'].'</td>';
+                                    echo '<td>'.$row['status'].'</td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="6">No records found.</td></tr>';
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <?php include_once 'includes/footer.php' ?>
     </div>
-    <?php include_once 'includes/footer.php' ?>
 </body>
 </html>

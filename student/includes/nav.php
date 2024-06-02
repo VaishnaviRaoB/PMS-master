@@ -27,14 +27,7 @@
       <li class="nav-item" id="help">
         <a class="nav-link" href="help.php">Help</a>
       </li>
-          <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          More
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="register.php">Sign Up</a>
-          <a class="dropdown-item" href="#">Help</a>
-      </li> 
+         
     </ul>
     <?php
     if (session_status() == PHP_SESSION_NONE) {

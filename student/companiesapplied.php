@@ -1,3 +1,4 @@
+
 <?php
 include_once 'includes/head.php';
 include_once 'includes/nav.php';
@@ -94,36 +95,40 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="table-responsive">
             <table class="table table-hover table-borderless table-light">
                 <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Company Name</th>
-                    <th scope="col">Student Name</th>
-                    <th scope="col">Status</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <?php
-                include_once '../includes/db.inc.php'; // Adjust the path as per your directory structure
-                $user = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-                if (!empty($user)) {
-                    $sql = "SELECT * FROM applied WHERE student_name='$user';";
-                    $res = mysqli_query($conn, $sql);
-                    if ($res && mysqli_num_rows($res) > 0) {
-                        while ($row = mysqli_fetch_assoc($res)) {
-                            echo '<tr>';
-                            echo '<td>'.$row['id'].'</td>';
-                            echo '<td>'.$row['company'].'</td>';
-                            echo '<td>'.$row['name'].'</td>';
-                            echo '<td>'.$row['status'].'</td>';
-                            echo '</tr>';
+                    <?php
+                    include_once '../includes/db.inc.php'; // Adjust the path as per your directory structure
+                    $user = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+                    if (!empty($user)) {
+                        $sql = "SELECT * FROM applied WHERE student_name='$user';";
+                        $res = mysqli_query($conn, $sql);
+                        if ($res && mysqli_num_rows($res) > 0) {
+                            while ($row = mysqli_fetch_assoc($res)) {
+                                echo '<tr>';
+                                echo '<td>' . $row['company'] . '</td>';
+                                echo '<td>' . $row['student_name'] . '</td>'; // Modified to display student name
+                                echo '<td>' . $row['status'] . '</td>';
+                                if ($row['status'] == 'Selected') {
+                                    echo '<td>Selected</td>'; // Display Selected if already selected
+                                } else {
+                                    echo '<td><a href="delete_application.php?company=' . urlencode($row['company']) . '">Delete</a></td>'; // Link to delete application if not selected
+                                }
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo '<tr><td colspan="4">No records found</td></tr>';
                         }
                     } else {
-                        echo '<tr><td colspan="4">No records found</td></tr>';
+                        echo '<tr><td colspan="4">Session data not available</td></tr>';
                     }
-                } else {
-                    echo '<tr><td colspan="4">Session data not available</td></tr>';
-                }
-                ?>
+                    ?>
                 </tbody>
             </table>
         </div>
