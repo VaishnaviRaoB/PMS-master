@@ -29,7 +29,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="website">Website</label>
-                            <input type="url" class="form-control" id="website" name="website" placeholder="Website" required>
+                            <input type="url" pattern="^(https?:\/\/|www\.)[^\s$.?#].[^\s]*$"  class="form-control" id="website" name="website" placeholder="Website" required>
+							
                         </div>
                         <div class="form-group col-md-6">
                             <label for="ctype">Industry Type</label>

@@ -1,5 +1,5 @@
 <?php
-include_once '../includes/db_connect.php';
+include_once '../includes/db.inc.php';
 
 if (isset($_GET['delete'])) {
     $name = urldecode($_GET['delete']);
@@ -7,6 +7,7 @@ if (isset($_GET['delete'])) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $name);
     $stmt->execute();
+    
     header("Location: ../viewcompanies.php");
     exit();
 } else {

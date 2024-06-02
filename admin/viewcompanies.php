@@ -46,26 +46,26 @@
             width: 50px;
             border-bottom: 1px solid #dee2e6;
             border-top: 1px solid #dee2e6;
-            border-right: 1px solid #dee2e6; /* Add vertical line */
+            border-right: 1px solid #dee2e6;
         }
         .table thead th:first-child {
-            border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
+            border-left: 1px solid #dee2e6;
         }
         .table thead th:last-child {
-            border-right:1px solid #dee2e6 ; /* Remove vertical line after the last column */
+            border-right: 1px solid #dee2e6;
         }
         .table td, .table th {
             vertical-align: middle;
-            border-right: 1px solid #dee2e6; /* Extend vertical line for entire column */
+            border-right: 1px solid #dee2e6;
         }
         .table td:last-child, .table th:last-child {
-            border-right: 1px solid #dee2e6; /* Remove vertical line for last column */
+            border-right: 1px solid #dee2e6;
         }
         .table td:first-child, .table th:first-child {
-            border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
+            border-left: 1px solid #dee2e6;
         }
         .table td {
-            padding: 10px 10px ;
+            padding: 10px 10px;
             border-bottom: 1px solid #dee2e6;
         }
         .btn-sm {
@@ -109,7 +109,6 @@
                     <?php
                     // Assuming you have established the database connection ($conn) earlier
                     
-
                     if(isset($_GET['search'])) {
                         $search = mysqli_real_escape_string($conn, $_GET['search']);
                         $sql = "SELECT * FROM company WHERE name LIKE '%$search%' ORDER BY name;";
@@ -120,12 +119,21 @@
                     $res = mysqli_query($conn, $sql);
                     if($res && mysqli_num_rows($res) > 0) {
                         while ($row = mysqli_fetch_assoc($res)) {
+                            $website = htmlspecialchars($row["website"]);
+                            if (strpos($website, "http://") !== 0 && strpos($website, "https://") !== 0) {
+                                if (strpos($website, "www.") === 0) {
+                                    $website = "http://" . $website;
+                                } else {
+                                    $website = "http://www." . $website;
+                                }
+                            }
+
                             echo '<tr>';
-                            echo '<td>'.htmlspecialchars($row['name']).'</td>';
-                            echo '<td>'.htmlspecialchars($row['type']).'</td>';
-                            echo '<td><a href="' . htmlspecialchars($row["website"]) . '" target="_blank">' . htmlspecialchars($row["website"]) . '</a></td>';
-                            echo '<td>'.htmlspecialchars($row['number']).'</td>';
-                            echo '<td>'.htmlspecialchars($row['status']).'</td>';
+                            echo '<td>'.$row['name'].'</td>';
+                            echo '<td>'.$row['type'].'</td>';
+                            echo '<td><a href="' . $website . '" target="_blank">' . $website . '</a></td>';
+                            echo '<td>'.$row['number'].'</td>';
+                            echo '<td>'.$row['status'].'</td>';
                             ?>
                             <td>
                                 <a href="editcomp.php?edit=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>

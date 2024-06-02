@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2024 at 07:10 AM
+-- Generation Time: Jun 02, 2024 at 01:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,7 +56,7 @@ INSERT INTO `adminlogin` (`uname`, `pwd`, `fname`, `lname`, `email`, `phone`) VA
 CREATE TABLE `applied` (
   `usn` varchar(20) NOT NULL,
   `student_name` varchar(100) NOT NULL,
-  `company` varchar(200) NOT NULL,
+  `company` varchar(200) DEFAULT NULL,
   `status` varchar(100) DEFAULT 'Unknown',
   `chances` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -66,11 +66,15 @@ CREATE TABLE `applied` (
 --
 
 INSERT INTO `applied` (`usn`, `student_name`, `company`, `status`, `chances`) VALUES
-('USN001', 'Alice Wonderland', 'Infosys', 'Attended', 'High'),
-('USN002', 'Bob Builder', 'TCS', 'Selected', 'Medium'),
-('USN003', 'Charlie Chocolate', 'Wipro', 'Attended', 'Low'),
-('USN004', 'David Copperfield', 'Microsoft', 'Selected', 'High'),
-('USN005', 'Eve Adams', 'Google', 'Rejected', 'Low');
+('USN001', 'Alice Wonderland', 'Google', 'Selected', 'High'),
+('USN001', 'Alice Wonderland', 'Microsoft', 'Attended', 'Medium'),
+('USN002', 'Bob Builder', 'TCS', 'Rejected', 'Low'),
+('USN002', 'Bob Builder', 'Infosys', 'Unknown', NULL),
+('USN003', 'Charlie Chocolate', 'Wipro', 'Attended', 'High'),
+('USN004', 'David Copperfield', 'Google', 'Selected', 'High'),
+('USN004', 'David Copperfield', 'Microsoft', 'Rejected', 'Medium'),
+('USN005', 'Eve Adams', 'TCS', 'Unknown', NULL),
+('USN005', 'Eve Adams', 'Infosys', 'Attended', 'Low');
 
 -- --------------------------------------------------------
 
@@ -93,11 +97,18 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`name`, `type`, `address`, `number`, `website`, `status`, `minperc`) VALUES
-('Google', 'Software', 'Bangalore', '0808765432', 'www.google.com', 'Active', '80'),
-('Infosys', 'IT', 'Bangalore', '0801234567', 'www.infosys.com', 'Active', '60'),
-('Microsoft', 'Software', 'Hyderabad', '0401234567', 'www.microsoft.com', 'Active', '75'),
-('TCS', 'IT', 'Mumbai', '0221234567', 'www.tcs.com', 'Active', '70'),
-('Wipro', 'IT', 'Bangalore', '0807654321', 'www.wipro.com', 'Active', '65');
+('Amazon', 'Software', 'Seattle, USA', '1234567890', 'https://www.amazon.com', 'Active', '80'),
+('Apple Inc.', 'Software', 'Cupertino, USA', '0987654321', 'https://www.apple.com', 'Active', '85'),
+('Google LLC', 'Software', 'Mountain View, USA', '1111111111', 'https://www.google.com', 'Active', '80'),
+('HCL Technologies', 'IT', 'Noida, India', '1201201201', 'https://www.hcltech.com', 'Active', '65'),
+('IBM', 'Software', 'Armonk, USA', '2222222222', 'https://www.ibm.com', 'Active', '70'),
+('Infosys', 'IT', 'Bangalore, India', '8088888888', 'https://www.infosys.com', 'Active', '60'),
+('Microsoft Corporation', 'Software', 'Redmond, USA', '5555555555', 'https://www.microsoft.com', 'Active', '75'),
+('Oracle Corporation', 'Software', 'Austin, USA', '3333333333', 'https://www.oracle.com', 'Active', '75'),
+('Salesforce', 'Software', 'San Francisco, USA', '6666666666', 'https://www.salesforce.com', 'Active', '75'),
+('Tata Consultancy Services (TCS)', 'IT', 'Mumbai, India', '9099999999', 'https://www.tcs.com', 'Active', '70'),
+('Tech Mahindra', 'IT', 'Pune, India', '2022022022', 'https://www.techmahindra.com', 'Active', '70'),
+('Wipro', 'IT', 'Bangalore, India', '8077777777', 'https://www.wipro.com', 'Active', '65');
 
 -- --------------------------------------------------------
 
@@ -207,7 +218,8 @@ INSERT INTO `training` (`course`, `lecturer`, `description`, `start_date`, `end_
 ('Algorithms', 'Dr. Johnson', 'Algorithm design and analysis.', '2024-06-15', '2024-07-15', 30),
 ('Operating Systems', 'Prof. Brown', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30),
 ('Database Management', 'Dr. White', 'Database systems and SQL.', '2024-06-25', '2024-07-25', 30),
-('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30);
+('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30),
+('dbms', 'a', 'abc', '2024-06-20', '2024-07-06', 30);
 
 --
 -- Indexes for dumped tables
@@ -253,13 +265,6 @@ ALTER TABLE `studentlogin`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `applied`
---
-ALTER TABLE `applied`
-  ADD CONSTRAINT `applied_ibfk_1` FOREIGN KEY (`usn`) REFERENCES `studentlogin` (`usn`),
-  ADD CONSTRAINT `applied_ibfk_2` FOREIGN KEY (`company`) REFERENCES `company` (`name`);
 
 --
 -- Constraints for table `join_course`
