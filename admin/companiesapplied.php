@@ -1,3 +1,5 @@
+<?php include_once 'includes/head.php' ?>
+<?php include_once 'includes/nav.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Companies Applied</title>
-    <?php include_once 'includes/head.php' ?>
+    
     <style>
         .search-container {
             display: flex;
@@ -106,12 +108,15 @@
             background-color: yellow !important; /* Yellow color for attended */
         }
         .rejected {
-            background-color: lightcoral !important; /* Light coral color for rejected */
+            background-color: red !important; /* Red color for applied */
+        }
+        .unknown {
+            background-color: lightblue !important; /* Red color for applied */
         }
     </style>
 </head>
 <body>
-    <?php include_once 'includes/nav.php' ?>
+    
     <div class="container" style="z-index: 2;">
         <h1 class="form-row justify-content-center mt-4">Companies Applied</h1>
         <div class="search-container mt-4">
@@ -128,73 +133,66 @@
                         <th scope="col">USN</th>
                         <th scope="col">Student Name</th>
                         <th scope="col">Company Name</th>
-                      
-                        
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         // Include your database connection file
-                       
+                        include_once 'includes/db.inc.php';
+
+                        // Get distinct status types
+                        $status_query = "SELECT DISTINCT status FROM applied";
+                        $status_result = mysqli_query($conn, $status_query);
+                        $status_types = array();
+                        while ($row = mysqli_fetch_assoc($status_result)) {
+                            $status_types[] = $row['status'];
+                        }
+
+                        // Define the order of status types with "Selected" first
+                        $status_order = array('Selected', 'Applied');
+                        foreach ($status_types as $status) {
+                            if (!in_array($status, $status_order)) {
+                                $status_order[] = $status;
+                            }
+                        }
+
                         // Check if search query is set
                         if (isset($_GET['search'])) {
                             $search = mysqli_real_escape_string($conn, $_GET['search']);
-                            $sql = "SELECT a.usn, a.student_name, c.name as company, a.status, a.chances
-                                    FROM applied a
-                                    JOIN company c ON a.company = c.name
-                                    WHERE c.name LIKE '%$search%'
-                                    ORDER BY 
-                                        CASE
-                                            WHEN a.status = 'Selected' THEN 1
-                                            WHEN a.status = 'Attended' THEN 2
-                                            WHEN a.status = 'Rejected' THEN 3
-                                            ELSE 4
-                                        END, a.usn;";
+                            $sql = "SELECT * FROM applied WHERE company LIKE '%$search%' ORDER BY FIELD(status, '" . implode("', '", $status_order) . "'), usn";
                         } else {
-                            $sql = "SELECT a.usn, a.student_name, c.name as company, a.status, a.chances
-                                    FROM applied a
-                                    JOIN company c ON a.company = c.name
-                                    ORDER BY 
-                                        CASE
-                                            WHEN a.status = 'Selected' THEN 1
-                                            WHEN a.status = 'Attended' THEN 2
-                                            WHEN a.status = 'Rejected' THEN 3
-                                            ELSE 4
-                                        END, a.usn;";
+                            $sql = "SELECT * FROM applied ORDER BY FIELD(status, '" . implode("', '", $status_order) . "'), usn";
                         }
 
                         $res = mysqli_query($conn, $sql);
                         $rescheck = mysqli_num_rows($res);
 
-                        $current_status = "";
-                        $status_count = 0;
-
                         if ($rescheck > 0) {
+                            $current_status = "";
+                            $status_count = 0;
                             while ($row = mysqli_fetch_assoc($res)) {
                                 if ($row['status'] !== $current_status) {
                                     if ($current_status !== "") {
                                         // Print the total count for the previous group
-                                        echo '<tr class="group-total"><td colspan="5">Total: ' . $status_count . '</td></tr>';
-                                        echo '<tr><td colspan="5">&nbsp;</td></tr>';
+                                        echo '<tr class="group-total"><td colspan="4">Total: ' . $status_count . '</td></tr>';
+                                        echo '<tr><td colspan="4">&nbsp;</td></tr>';
                                     }
                                     // Print the new group header
                                     $current_status = $row['status'];
                                     $status_count = 0;
-                                    echo '<tr class="group-header ' . strtolower($current_status) . '"><td colspan="5">Status: ' . ucfirst($current_status) . '</td></tr>';
+                                    echo '<tr class="group-header ' . strtolower($current_status) . '"><td colspan="4">Status: ' . ucfirst($current_status) . '</td></tr>';
                                 }
                                 $status_count++;
                                 echo '<tr>';
-                                    echo '<td>' . $row['usn'] . '</td>';
-                                    echo '<td>' . $row['student_name'] . '</td>';
-                                    echo '<td>' . $row['company'] . '</td>';
-                                    
-                                    
-                                echo '</tr>';
+                                echo '<td>'.$row['usn'].'</td>';
+                                echo '<td>'.$row['student_name'].'</td>';
+                                echo '<td>'.$row['company'].'</td>';
+                                // Adjust the class to only apply to the "Status" column
                             }
                             // Print the total count for the last group
-                            echo '<tr class="group-total"><td colspan="5">Total: ' . $status_count . '</td></tr>';
+                            echo '<tr class="group-total"><td colspan="4">Total: ' . $status_count . '</td></tr>';
                         } else {
-                            echo '<tr><td colspan="5">No companies found.</td></tr>';
+                            echo '<tr><td colspan="4">No companies found.</td></tr>';
                         }
                     ?>
                 </tbody>
