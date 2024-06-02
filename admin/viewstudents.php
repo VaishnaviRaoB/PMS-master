@@ -34,7 +34,9 @@
             background-color: #45a049;
         }
         .table-container {
-            margin-top: 30px;
+            margin-top: 50px;
+            margin-right: -80px;
+            margin-left: -80px;
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
@@ -43,7 +45,8 @@
         .table thead th {
             background-color: #f8f9fa;
             font-weight: bold;
-            width: 50px;
+            width: 10px;
+            white-space: nowrap !important;
             border-bottom: 1px solid #dee2e6;
             border-top: 1px solid #dee2e6;
             border-right: 1px solid #dee2e6; /* Add vertical line */
