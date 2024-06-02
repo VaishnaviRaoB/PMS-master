@@ -14,19 +14,9 @@ if (isset($_POST['add'])) {
     $res1 = mysqli_query($conn, $sql1);
 
     if (!$res1) {
-        ?>
-        <script>
-            alert("Company could not be added");
-            window.location.replace("../addcompanies.php?result=fail");
-        </script>
-        <?php
+        echo "<script>alert('Company could not be added'); window.location.replace('../addcompanies.php?result=fail');</script>";
     } else {
-        ?>
-        <script>
-            alert("Company has been added successfully");
-            window.location.replace("../viewcompanies.php?result=success");
-        </script>
-        <?php
+        echo "<script>alert('Company has been added successfully'); window.location.replace('../viewcompanies.php?result=success');</script>";
     }
 }
 
@@ -39,23 +29,13 @@ if (isset($_POST['update'])) {
     $phone = $_POST['telephone'];
     $minperc = $_POST['minperc'];
 
-    $sql = "UPDATE `company` SET `name`='$cname', `website`='$website', `address`='$address', `type`='$ctype', `status`='$status', `number`='$phone', `minperc`='$minperc' WHERE `name`='$cid';";
+    $sql = "UPDATE `company` SET `name`='$cname', `website`='$website', `address`='$address', `type`='$ctype', `status`='$status', `number`='$phone', `minperc`='$minperc' WHERE `name`='$cname';";
     $res = mysqli_query($conn, $sql);
 
     if (!$res) {
-        ?>
-        <script>
-            alert("Company could not be updated");
-            window.location.replace("../editcomp.php?result=fail");
-        </script>
-        <?php
+        echo "<script>alert('Company could not be updated'); window.location.replace('../editcomp.php?result=fail');</script>";
     } else {
-        ?>
-        <script>
-            alert("Company has been updated");
-            window.location.replace("../viewcompanies.php?result=success");
-        </script>
-        <?php
+        echo "<script>alert('Company has been updated'); window.location.replace('../viewcompanies.php?result=success');</script>";
     }
 }
 ?>

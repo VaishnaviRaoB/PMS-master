@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="css/addcomp.css">
-    <?php include_once 'includes/head.php' ?>
+    <?php include_once 'includes/head.php'; ?>
 </head>
 <body>
     <div>
@@ -39,6 +39,13 @@
                                 <option value="Software">Software</option>
                                 <option value="Consulting">Consulting</option>
                                 <option value="Manufacturing">Manufacturing</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Retail">Retail</option>
+                                <option value="Education">Education</option>
+                                <option value="Hospitality">Hospitality</option>
+                                <option value="Real Estate">Real Estate</option>
+                                <option value="Telecommunications">Telecommunications</option>
                             </select>
                         </div>
                     </div>
@@ -72,13 +79,13 @@
             </div>
         </form>
     </div>
-   
     <script>
-        var a = document.getElementById("telephone").value;
-        function f() {
-            if (a.length > 10) {
-                alert("Numbers must be equal to 10 digits");
-            }
+        // Prevent default behavior only for specific anchor tags if needed
+        var anchorTags = document.querySelectorAll('a.prevent-default');
+        for (var i = 0; i < anchorTags.length; i++) {
+            anchorTags[i].addEventListener('click', function(event) {
+                event.preventDefault();
+            });
         }
     </script>
 </body>

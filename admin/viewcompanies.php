@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View Compamies</title>
-    <?php include_once 'includes/head.php' ?>
+    <title>View Companies</title>
+    <?php include_once 'includes/head.php'; ?>
     <style>
         .search-container {
             display: flex;
@@ -83,7 +83,7 @@
     </style>
 </head>
 <body>
-    <?php include_once 'includes/nav.php' ?>
+    <?php include_once 'includes/nav.php'; ?>
     <div class="container" style="z-index: 2;">
         <h1 class="form-row justify-content-center mt-4">Companies</h1>
         <div class="search-container mt-4">
@@ -107,40 +107,42 @@
                 </thead>
                 <tbody>
                     <?php
-                        
-                        if(isset($_GET['search'])) {
-                            $search = mysqli_real_escape_string($conn, $_GET['search']);
-                            $sql = "SELECT * FROM company WHERE name LIKE '%$search%' ORDER BY name;";
-                        } else {
-                            $sql = "SELECT * FROM company ORDER BY name;";
-                        }
+                    // Assuming you have established the database connection ($conn) earlier
+                    
 
-                        $res = mysqli_query($conn, $sql);
-                        if($res) {
-                            while ($row = mysqli_fetch_assoc($res)) {
-                                echo '<tr>';
-                                    echo '<td>'.$row['name'].'</td>';
-                                    echo '<td>'.$row['type'].'</td>';
-                                    echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
-                                    echo '<td>'.$row['number'].'</td>';
-                                    echo '<td>'.$row['status'].'</td>';
-                                    ?>
-                                    <td>
-                                        <a href="editcomp.php?edit=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
-                                        <a href="php/crud.php?delete=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
-                                    </td>
-                                    <?php
-                                echo '</tr>';
-                            }
-                        } else {
-                            echo '<tr><td colspan="6">No records found.</td></tr>';
+                    if(isset($_GET['search'])) {
+                        $search = mysqli_real_escape_string($conn, $_GET['search']);
+                        $sql = "SELECT * FROM company WHERE name LIKE '%$search%' ORDER BY name;";
+                    } else {
+                        $sql = "SELECT * FROM company ORDER BY name;";
+                    }
+
+                    $res = mysqli_query($conn, $sql);
+                    if($res && mysqli_num_rows($res) > 0) {
+                        while ($row = mysqli_fetch_assoc($res)) {
+                            echo '<tr>';
+                            echo '<td>'.htmlspecialchars($row['name']).'</td>';
+                            echo '<td>'.htmlspecialchars($row['type']).'</td>';
+                            echo '<td><a href="' . htmlspecialchars($row["website"]) . '" target="_blank">' . htmlspecialchars($row["website"]) . '</a></td>';
+                            echo '<td>'.htmlspecialchars($row['number']).'</td>';
+                            echo '<td>'.htmlspecialchars($row['status']).'</td>';
+                            ?>
+                            <td>
+                                <a href="editcomp.php?edit=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
+                                <a href="php/crud.php?delete=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <?php
+                            echo '</tr>';
                         }
+                    } else {
+                        echo '<tr><td colspan="6">No records found.</td></tr>';
+                    }
                     ?>
                 </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <?php include_once 'includes/footer.php' ?>
+    <?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

@@ -1,30 +1,25 @@
 <?php
-include_once '../includes/db.inc.php';
+include_once '../includes/db_connect.php';
+
 if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    $sql = "delete from company where id='$id';";
-    $res = mysqli_query($conn, $sql);
-    if (!$res) {
-        ?>
-        <script>
-            alert("Company could not be deleted");
-            window.location.replace("../viewcompanies.php?result=fail");
-        </script>
-        <?php
-    } else {
-        ?>
-        <script>
-            alert("Company has been deleted");
-            window.location.replace("../viewcompanies.php?result=success");
-        </script>
-        <?php
-    }
+    $name = urldecode($_GET['delete']);
+    $sql = "DELETE FROM company WHERE name = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+    header("Location: ../viewcompanies.php");
+    exit();
+} else {
+    header("Location: ../viewcompanies.php");
+    exit();
 }
 
+
 if (isset($_GET['delete1'])) {
-    $id = $_GET['delete1'];
-    $sql = "delete from training where id='$id';";
+    $course = $_GET['delete1'];
+    $sql = "DELETE FROM training WHERE course='$course';"; // Use uppercase SQL keywords
     $res = mysqli_query($conn, $sql);
+
     if (!$res) {
         ?>
         <script>
@@ -41,3 +36,4 @@ if (isset($_GET['delete1'])) {
         <?php
     }
 }
+?>
