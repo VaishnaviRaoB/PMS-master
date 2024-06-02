@@ -111,6 +111,9 @@
             background-color: red !important; /* Red color for applied */
         }
         .unknown {
+            background-color: white !important; /* Red color for applied */
+        }
+        .applied {
             background-color: lightblue !important; /* Red color for applied */
         }
     </style>

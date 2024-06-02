@@ -65,16 +65,18 @@ CREATE TABLE `applied` (
 -- Dumping data for table `applied`
 --
 
-INSERT INTO `applied` (`usn`, `student_name`, `company`, `status`, `chances`) VALUES
+INSERT INTO `applied` (`usn`, `student_name`, `company`, `status`, `chances`)
+VALUES
 ('USN001', 'Alice Wonderland', 'Google', 'Selected', 'High'),
-('USN001', 'Alice Wonderland', 'Microsoft', 'Attended', 'Medium'),
 ('USN002', 'Bob Builder', 'TCS', 'Rejected', 'Low'),
-('USN002', 'Bob Builder', 'Infosys', 'Unknown', NULL),
 ('USN003', 'Charlie Chocolate', 'Wipro', 'Attended', 'High'),
 ('USN004', 'David Copperfield', 'Google', 'Selected', 'High'),
+('USN005', 'Eve Adams', 'Infosys', 'Attended', 'Low'),
+('USN001', 'Alice Wonderland', 'Microsoft', 'Attended', 'Medium'),
+('USN002', 'Bob Builder', 'Infosys', 'Unknown', NULL),
 ('USN004', 'David Copperfield', 'Microsoft', 'Rejected', 'Medium'),
-('USN005', 'Eve Adams', 'TCS', 'Unknown', NULL),
-('USN005', 'Eve Adams', 'Infosys', 'Attended', 'Low');
+('USN005', 'Eve Adams', 'TCS', 'Applied', 'High');
+
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,7 @@ CREATE TABLE `studentlogin` (
 
 INSERT INTO `studentlogin` (`usn`, `uname`, `pwd`, `fname`, `lname`, `email`, `phone`, `secque`, `secans`, `course`, `branch`, `percentage`, `yop`, `sslc`, `puc`) VALUES
 ('USN001', 'student1', 'stud123', 'Alice', 'Wonderland', 'alice@example.com', '1234509876', 'Pet name', 'Fluffy', 'B.Tech', 'CSE', '85', '2024', '90', '92'),
-('USN002', 'student2', 'stud456', 'Bob', 'Builder', 'bob@example.com', '2345610987', 'Mother\'s maiden name', 'Smith', 'B.Tech', 'ECE', '80', '2024', '85', '88'),
+('USN002', 'student2', 'stud456', 'Bob', 'Builder', 'bob@example.com', '2345610987', 'maiden name', 'Smith', 'B.Tech', 'ECE', '80', '2024', '85', '88'),
 ('USN003', 'student3', 'stud789', 'Charlie', 'Chocolate', 'charlie@example.com', '3456721098', 'First school', 'Greenwood', 'B.Tech', 'EEE', '78', '2024', '88', '86'),
 ('USN004', 'student4', 'stud321', 'David', 'Copperfield', 'david@example.com', '4567832109', 'Favorite book', 'Harry Potter', 'B.Tech', 'ME', '82', '2024', '87', '89'),
 ('USN005', 'student5', 'stud654', 'Eve', 'Adams', 'eve@example.com', '5678943210', 'Favorite color', 'Blue', 'B.Tech', 'CE', '84', '2024', '89', '90');
