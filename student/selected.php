@@ -1,10 +1,13 @@
-<?php include_once 'includes/head.php'; ?>
-<?php include_once 'includes/nav.php'; ?>
-<?php
+<?php 
+include_once 'includes/head.php';
+include_once 'includes/nav.php';
+
 // Start the session if it's not already started
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+include_once 'includes/db.inc.php'; // Make sure this file includes your database connection code
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +16,9 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" type="text/css" href="css/addcomp.css"> -->
+    <title>Selected Companies</title>
+    <link rel="stylesheet" type="text/css" href="css/reg.css"> <!-- Adjust the CSS link accordingly -->
+    <!-- Include any additional styles or scripts here -->
     <style>
         .search-container {
             display: flex;
@@ -105,54 +109,46 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="table-container">
         <div class="table-responsive">
             <table class="table table-hover table-borderless table-light">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Company Name</th>
-          <th scope="col">Student Name</th>
-          <th scope="col">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-     <?php
-            $user = $_SESSION['username'];
-            $sql = "select * from applied where name='$user' and status='Selected';";
-            $res = mysqli_query($conn, $sql);
-            $rescheck = mysqli_num_rows($res);
-            if($rescheck > 0) {
-              while ($row = mysqli_fetch_assoc($res)) {
-                ?>
-          <?php
-                  echo '<tr>';
-                    echo '<td>'.$row['id'].'</td>';
-                    echo '<td>'.$row['company'].'</td>';
-                    echo '<td>'.$row['name'].'</td>';
-                    echo '<td>'.$row['status'].'</td>';
-                  echo '</tr>';
-                  ?>
-                <?php
-              }
-            } else {
-              ?>
-               <p class="lead" align="center">You are not selected for any company<p>
-                <?php
-            }
-           ?>
-    
-                </tr>
-                  </tbody>
-                </table>
-                </div>
-   </form>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $user = $_SESSION['username'];
+                    $sql = "SELECT * FROM applied WHERE student_name=? AND status='Selected';";
+                    $stmt = mysqli_stmt_init($conn);
+                    if (mysqli_stmt_prepare($stmt, $sql)) {
+                        mysqli_stmt_bind_param($stmt, "s", $user);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+                        $rowCount = mysqli_num_rows($result);
+                        if ($rowCount > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<tr>';
+                                echo '<td>'.$row['id'].'</td>';
+                                echo '<td>'.$row['company'].'</td>';
+                                echo '<td>'.$row['name'].'</td>';
+                                echo '<td>'.$row['status'].'</td>';
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo '<tr><td colspan="4">You are not selected for any company</td></tr>';
+                        }
+                    }
+                    mysqli_stmt_close($stmt);
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <?php include_once 'includes/footer.php' ?>
-    <script>
-      $(document).ready(function() {
-         $("#home").removeClass("active");
-        $("#select").addClass("active");
-        
-      });
-    </script>
+</div>
+<?php include_once 'includes/footer.php'; ?>
+
+<!-- Include any additional scripts here -->
 </body>
 </html>

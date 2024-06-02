@@ -1,25 +1,39 @@
 <?php 
-	include_once '../../includes/db.inc.php';
-	if (isset($_POST['signup'])) {
-		$uname = $_POST['username'];
-		$fname = $_POST['fname'];
-		$lname = $_POST['lname'];
-		$mailid = $_POST['email'];
-		$phone = $_POST['phone'];
-		$pwd1 = $_POST['pwd1'];
-		$pwd2 = $_POST['pwd2'];
-		$secque = $_POST['secque'];
-		$secans = $_POST['secans'];
+    include_once '../../includes/db.inc.php';
 
-		$sql = "insert into studentlogin (uname, fname, lname, email, phone, pwd, secque, secans) values('$uname', '$fname', '$lname', '$email', '$phone', '$pwd1','$secque', '$secans');";
-		$res = mysqli_query($conn, $sql);
-		if (!$res) {
-			header("Location: ../register.php?result=fail");
-		} else {
-			header("Location: ../login.php?result=success");
-		}
-	}
+    if (isset($_POST['signup'])) {
+        $uname = mysqli_real_escape_string($conn, $_POST['username']);
+        $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+        $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $phone = mysqli_real_escape_string($conn, $_POST['phone']);
+        $pwd1 = mysqli_real_escape_string($conn, $_POST['pwd1']);
+        $pwd2 = mysqli_real_escape_string($conn, $_POST['pwd2']);
+        $secque = mysqli_real_escape_string($conn, $_POST['secque']);
+        $secans = mysqli_real_escape_string($conn, $_POST['secans']);
+
+        // Check if passwords match
+        if ($pwd1 != $pwd2) {
+            header("Location: ../register.php?result=passwords_mismatch");
+            exit();
+        }
+
+        // Hash the password before storing in the database
+        $hashedPwd = password_hash($pwd1, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO studentlogin (uname, fname, lname, email, phone, pwd, secque, secans) VALUES ('$uname', '$fname', '$lname', '$email', '$phone', '$hashedPwd','$secque', '$secans')";
+        $res = mysqli_query($conn, $sql);
+
+        if (!$res) {
+            header("Location: ../register.php?result=registration_failed");
+            exit();
+        } else {
+            header("Location: ../login.php?result=registration_success");
+            exit();
+        }
+    }
 ?>
+
     	</div>
 		<form action="register.inc.php" autocomplete="off" method="POST">
 			<input type="text" style="display: none;" autocomplete="false">

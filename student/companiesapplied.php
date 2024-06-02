@@ -1,6 +1,7 @@
-<?php include_once 'includes/head.php'; ?>
-<?php include_once 'includes/nav.php'; ?>
 <?php
+include_once 'includes/head.php';
+include_once 'includes/nav.php';
+
 // Start the session if it's not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -13,9 +14,10 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" type="text/css" href="css/addcomp.css"> -->
+    <title>Applied Companies</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
+        /* Your custom CSS styles */
         .search-container {
             display: flex;
             justify-content: center;
@@ -101,11 +103,12 @@ if (session_status() == PHP_SESSION_NONE) {
                 </thead>
                 <tbody>
                 <?php
+                include_once '../includes/db.inc.php'; // Adjust the path as per your directory structure
                 $user = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-                if(!empty($user)) {
-                    $sql = "select * from applied where name='$user';";
+                if (!empty($user)) {
+                    $sql = "SELECT * FROM applied WHERE student_name='$user';";
                     $res = mysqli_query($conn, $sql);
-                    if ($res) {
+                    if ($res && mysqli_num_rows($res) > 0) {
                         while ($row = mysqli_fetch_assoc($res)) {
                             echo '<tr>';
                             echo '<td>'.$row['id'].'</td>';
@@ -114,7 +117,11 @@ if (session_status() == PHP_SESSION_NONE) {
                             echo '<td>'.$row['status'].'</td>';
                             echo '</tr>';
                         }
+                    } else {
+                        echo '<tr><td colspan="4">No records found</td></tr>';
                     }
+                } else {
+                    echo '<tr><td colspan="4">Session data not available</td></tr>';
                 }
                 ?>
                 </tbody>
@@ -122,7 +129,11 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
     </div>
 </div>
+
 <?php include_once 'includes/footer.php'; ?>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function() {
         $("#home").removeClass("active");
