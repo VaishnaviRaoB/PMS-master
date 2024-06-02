@@ -15,43 +15,41 @@
 </head>
 <body>
 <div>
-    	<img id="img2" src="../images/trainingicon.png" width="600px" style="position: absolute; position: fixed; z-index: 1; margin-left: 55%; margin-top: 20vh;">
-    </div>
-    <img src="../images/training.png" id="img1" style="position: fixed;">
-      <?php include_once 'includes/nav.php' ?>
-      <br><br> <br> <br><br>
-    <div class="content" style="margin-top: 40px; margin-left: 20px;">
-    	<h2 style="margin-left: 100px;">Join for a Training</h2>
-    </div>
-    <br> <br> <br> <br> <br>
-         <form action="join.php" method="POST">
-            
-            <div class="form-group col-md-3">
-              <label for="exampleInputEmail1">Select a Course</label>
-              <select class="custom-select" name="course">
-              <?php 
-                $user = $_SESSION['username'];
-                $sql = "select * from training;";
-                $res = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($res) > 0) {
+    <img id="img2" src="../images/trainingicon.png" width="600px" style="position: absolute; position: fixed; z-index: 1; margin-left: 55%; margin-top: 20vh;">
+</div>
+<img src="../images/training.png" id="img1" style="position: fixed;">
+<?php include_once 'includes/nav.php' ?>
+<br><br> <br> <br><br>
+<div class="content" style="margin-top: 40px; margin-left: 20px;">
+    <h2 style="margin-left: 100px;">Join for a Training</h2>
+</div>
+<br> <br> <br> <br> <br>
+<form action="join.php" method="POST">
+    <div class="form-group col-md-3">
+        <label for="exampleInputEmail1">Select a Course</label>
+        <select class="custom-select" name="course">
+        <?php 
+            include_once '../includes/db.inc.php'; // Include database connection file
+
+            $sql = "SELECT * FROM training;";
+            $res = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($res) > 0) {
                 while ($row = mysqli_fetch_assoc($res)) {
-                  ?>
-                        <option value="<?php echo $row['course']; ?>"><?php echo $row['course']; ?></option>
-                  <?php
-              }
-              }
-              ?>
-              </select>
-            </div>
-            <div class="form-group col-md-3">
-            <input class="btn" type="submit" name="joinnow" value="Join Now" style="width: 150px; color: white;
-			font-weight: bold; background: linear-gradient(to left, #6C63FF, #3F3D56);"> 
-            </div>
-                       
-         </form>
+        ?>
+            <option value="<?php echo $row['course']; ?>"><?php echo $row['course']; ?></option>
+        <?php
+                }
+            }
+        ?>
+        </select>
+    </div>
+    <div class="form-group col-md-3">
+        <input class="btn" type="submit" name="joinnow" value="Join Now" style="width: 150px; color: white; font-weight: bold; background: linear-gradient(to left, #6C63FF, #3F3D56);"> 
+    </div>
+</form>
 
-
-    <?php
+<?php
     if (isset($_POST['joinnow'])) {
         $course = $_POST['course'];
         $user = $_SESSION['username'];
@@ -65,14 +63,14 @@
             echo '<div class="alert alert-danger" role="alert">Error: ' . mysqli_error($conn) . '</div>';
         }
     }
-    ?>
+?>
 
-    <?php include_once 'includes/footer.php' ?>
-    <script>
-      $(document).ready(function() {
-         $("#home").removeClass("active");
+<?php include_once 'includes/footer.php' ?>
+<script>
+    $(document).ready(function() {
+        $("#home").removeClass("active");
         $("#apply").addClass("active");
-      });
-    </script>
+    });
+</script>
 </body>
 </html>

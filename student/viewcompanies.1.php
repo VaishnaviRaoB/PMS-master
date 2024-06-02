@@ -1,10 +1,13 @@
-<?php include_once 'includes/head.php'; ?>
-<?php include_once 'includes/nav.php'; ?>
-<?php
+<?php 
+include_once 'includes/head.php';
+include_once 'includes/nav.php';
+
 // Start the session if it's not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+include_once 'includes/db.inc.php'; // Make sure this file includes your database connection code
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +16,8 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" type="text/css" href="css/addcomp.css"> -->
+    <title>Companies</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         .search-container {
             display: flex;
@@ -97,7 +100,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <h1 class="form-row justify-content-center mt-4">Companies</h1>
     <div class="search-container mt-4">
         <form method="GET">
-            <input type="text" name="search" placeholder="Search Here">
+            <input type="text" name="search" placeholder="Search Here" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
             <button type="submit">Search</button>
         </form>
     </div>
@@ -111,37 +114,31 @@ if (session_status() == PHP_SESSION_NONE) {
                         <th scope="col">Website</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Status</th>
-                       
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                        
+                        $sql = "SELECT * FROM company ";
                         if(isset($_GET['search'])) {
-                          $search = mysqli_real_escape_string($conn, $_GET['search']);
-                          $sql = "SELECT * FROM company WHERE name LIKE '%$search%' ORDER BY id;";
-                      } else {
-                          $sql = "SELECT * FROM company ORDER BY id;";
-                      }
-                      $res = mysqli_query($conn, $sql);
-                      $rescheck = mysqli_num_rows($res);
-                      if($rescheck > 0) {
-                          while ($row = mysqli_fetch_assoc($res)) {
-                              echo '<tr>';
-                                  echo '<td>'.$row['name'].'</td>';
-                                  echo '<td>'.$row['type'].'</td>';
-                                  echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
-                                  echo '<td>'.$row['number'].'</td>';
-                                  echo '<td>'.$row['status'].'</td>';
-                                  ?>
-                                  
-                                  <?php
-                              echo '</tr>';
-                          }
-                      } else {
-                          echo '<tr><td colspan="6">No records found.</td></tr>';
-                      }
-
+                            $search = mysqli_real_escape_string($conn, $_GET['search']);
+                            $sql .= "WHERE name LIKE '%$search%' ";
+                        }
+                      
+                        
+                        $result = mysqli_query($conn, $sql);
+                        if(mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<tr>';
+                                echo '<td>'.$row['name'].'</td>';
+                                echo '<td>'.$row['type'].'</td>';
+                                echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
+                                echo '<td>'.$row['number'].'</td>';
+                                echo '<td>'.$row['status'].'</td>';
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo '<tr><td colspan="5">No records found.</td></tr>';
+                        }
                     ?>
                 </tbody>
             </table>

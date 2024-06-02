@@ -27,16 +27,19 @@
       <li class="nav-item" id="help">
         <a class="nav-link" href="help.php">Help</a>
       </li>
-          <!--  <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           More
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="register.php">Sign Up</a>
           <a class="dropdown-item" href="#">Help</a>
-      </li> -->
+      </li> 
     </ul>
-    <?php session_start(); ?>
+    <?php
+    if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} ?>
      <form class="form-inline my-2 my-lg-0">
           <li class="nav-item dropdown" style="list-style: none;">
           <button class="btn btn-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: 0 none;">

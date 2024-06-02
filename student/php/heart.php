@@ -1,5 +1,7 @@
 <?php 
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 	include_once '../../includes/db.inc.php';
 	if (isset($_GET['heart'])) {
 	$id = $_GET['heart'];
