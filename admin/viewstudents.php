@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View Trainings</title>
+    <title>View Students</title>
     <?php include_once 'includes/head.php' ?>
     <style>
         .search-container {
@@ -49,14 +49,12 @@
             border-right: 1px solid #dee2e6; /* Add vertical line */
         }
         .table thead th:first-child {
-          
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table thead th:last-child {
-            border-right:1px solid #dee2e6 ; /* Remove vertical line after the last column */
+            border-right: 1px solid #dee2e6; /* Remove vertical line after the last column */
         }
         .table td, .table th {
-            
             vertical-align: middle;
             border-right: 1px solid #dee2e6; /* Extend vertical line for entire column */
         }
@@ -67,19 +65,16 @@
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table td {
-            padding: 10px 10px ;
+            padding: 10px 10px;
             border-bottom: 1px solid #dee2e6;
-            
         }
         .btn-sm {
             padding: 5px 5px;
             margin: 0 0px;
             font-size: 0.8rem;
-            
         }
         .fas {
             font-size: 1em;
-            ;
         }
         .no-trainings {
             text-align: center;
@@ -102,7 +97,7 @@
                 <table class="table table-hover table-borderless table-light">
                 <thead>
                     <tr>
-                    <th scope="col">ID</th>
+                        <th scope="col">USN</th>
                         <th scope="col">Student Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
@@ -112,28 +107,29 @@
                 </thead>
                 <tbody>
                     <?php
+                       
                         if(isset($_GET['search'])) {
                             $search = mysqli_real_escape_string($conn, $_GET['search']);
-                            $sql = "SELECT * FROM studentlogin WHERE fname LIKE '%$search%';";
+                            $sql = "SELECT usn, CONCAT(fname, ' ', lname) AS student_name, phone, email, uname, course FROM studentlogin WHERE fname LIKE '%$search%' OR lname LIKE '%$search%' OR usn LIKE '%$search%';";
                         } else {
-                            $sql = "SELECT * FROM studentlogin;";
+                            $sql = "SELECT usn, CONCAT(fname, ' ', lname) AS student_name, phone, email, uname, course FROM studentlogin;";
                         }
                         $res = mysqli_query($conn, $sql);
                         $rescheck = mysqli_num_rows($res);
                         if($rescheck > 0) {
                             while ($row = mysqli_fetch_assoc($res)) {
                                 echo '<tr>';
-                                echo '<td>'.$row['id'].'</td>';
-                                    echo '<td>'.$row['fname'].'</td>';
-                                    echo '<td>'.$row['phone'].'</td>';
-                                    $gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" . urlencode($row['email']);
-                                    echo '<td><a href="'.$gmailUrl.'" target="_blank">'.$row['email'].'</a></td>';
-                                    echo '<td>'.$row['uname'].'</td>';
-                                    echo '<td>'.$row['course'].'</td>';
+                                echo '<td>'.$row['usn'].'</td>';
+                                echo '<td>'.$row['student_name'].'</td>';
+                                echo '<td>'.$row['phone'].'</td>';
+                                $gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" . urlencode($row['email']);
+                                echo '<td><a href="'.$gmailUrl.'" target="_blank">'.$row['email'].'</a></td>';
+                                echo '<td>'.$row['uname'].'</td>';
+                                echo '<td>'.$row['course'].'</td>';
                                 echo '</tr>';
                             }
                         } else {
-                            echo '<tr><td colspan="5">No students found.</td></tr>';
+                            echo '<tr><td colspan="6">No students found.</td></tr>';
                         }
                     ?>
                 </tbody>

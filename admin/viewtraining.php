@@ -49,14 +49,12 @@
             border-right: 1px solid #dee2e6; /* Add vertical line */
         }
         .table thead th:first-child {
-          
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table thead th:last-child {
             border-right:1px solid #dee2e6 ; /* Remove vertical line after the last column */
         }
         .table td, .table th {
-            
             vertical-align: middle;
             border-right: 1px solid #dee2e6; /* Extend vertical line for entire column */
         }
@@ -69,13 +67,11 @@
         .table td {
             padding: 10px 10px ;
             border-bottom: 1px solid #dee2e6;
-            
         }
         .btn-sm {
             padding: 5px 5px;
             margin: 0 0px;
             font-size: 0.8rem;
-            
         }
         .fas {
             font-size: 1em;
@@ -118,7 +114,7 @@
                         // Check if search query is set
                         if (isset($_GET['search'])) {
                             $search = mysqli_real_escape_string($conn, $_GET['search']);
-                            $sql = "SELECT * FROM training WHERE course LIKE '%$search%';";
+                            $sql = "SELECT * FROM training WHERE course LIKE '%$search%' OR lecturer LIKE '%$search%' OR description LIKE '%$search%';";
                         } else {
                             $sql = "SELECT * FROM training;";
                         }
@@ -137,14 +133,14 @@
                                 echo '<td>' . $row['duration'] . '</td>';
                                 ?>
                                 <td>
-                                    <a href="edittraining.php?edit=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
-                                    <a href="php/crud.php?delete=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
+                                    <a href="edittraining.php?edit=<?php echo $row['course']; ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
+                                    <a href="php/crud.php?delete=<?php echo $row['course']; ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
                                 </td>
                                 <?php
                                 echo '</tr>';
                             }
                         } else {
-                            echo '<tr><td colspan="6" class="no-trainings">No trainings found.</td></tr>';
+                            echo '<tr><td colspan="7" class="no-trainings">No trainings found.</td></tr>';
                         }
                         ?>
                     </tbody>

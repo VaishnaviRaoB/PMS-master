@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View Trainings</title>
+    <title>View Compamies</title>
     <?php include_once 'includes/head.php' ?>
     <style>
         .search-container {
@@ -49,14 +49,12 @@
             border-right: 1px solid #dee2e6; /* Add vertical line */
         }
         .table thead th:first-child {
-          
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table thead th:last-child {
             border-right:1px solid #dee2e6 ; /* Remove vertical line after the last column */
         }
         .table td, .table th {
-            
             vertical-align: middle;
             border-right: 1px solid #dee2e6; /* Extend vertical line for entire column */
         }
@@ -69,17 +67,14 @@
         .table td {
             padding: 10px 10px ;
             border-bottom: 1px solid #dee2e6;
-            
         }
         .btn-sm {
             padding: 5px 5px;
             margin: 0 0px;
             font-size: 0.8rem;
-            
         }
         .fas {
             font-size: 1em;
-            ;
         }
         .no-trainings {
             text-align: center;
@@ -108,43 +103,42 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Status</th>
                         <th scope="col">Actions</th>
-                    
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         
                         if(isset($_GET['search'])) {
-                          $search = mysqli_real_escape_string($conn, $_GET['search']);
-                          $sql = "SELECT * FROM company WHERE name LIKE '%$search%' ORDER BY id;";
-                      } else {
-                          $sql = "SELECT * FROM company ORDER BY id;";
-                      }
-                      $res = mysqli_query($conn, $sql);
-                      $rescheck = mysqli_num_rows($res);
-                      if($rescheck > 0) {
-                          while ($row = mysqli_fetch_assoc($res)) {
-                              echo '<tr>';
-                                  echo '<td>'.$row['name'].'</td>';
-                                  echo '<td>'.$row['type'].'</td>';
-                                  echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
-                                  echo '<td>'.$row['number'].'</td>';
-                                  echo '<td>'.$row['status'].'</td>';
-                                  ?>
-                                  <td>
-                                      <a href="editcomp.php?edit=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
-                                      <a href="php/crud.php?delete=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
-                                  </td>
-                                  <?php
-                              echo '</tr>';
-                          }
-                      } else {
-                          echo '<tr><td colspan="6">No records found.</td></tr>';
-                      }
+                            $search = mysqli_real_escape_string($conn, $_GET['search']);
+                            $sql = "SELECT * FROM company WHERE name LIKE '%$search%' ORDER BY name;";
+                        } else {
+                            $sql = "SELECT * FROM company ORDER BY name;";
+                        }
 
+                        $res = mysqli_query($conn, $sql);
+                        if($res) {
+                            while ($row = mysqli_fetch_assoc($res)) {
+                                echo '<tr>';
+                                    echo '<td>'.$row['name'].'</td>';
+                                    echo '<td>'.$row['type'].'</td>';
+                                    echo "<td><a href='" . htmlspecialchars($row["website"]) . "' target='_blank'>" . htmlspecialchars($row["website"]) . "</a></td>";
+                                    echo '<td>'.$row['number'].'</td>';
+                                    echo '<td>'.$row['status'].'</td>';
+                                    ?>
+                                    <td>
+                                        <a href="editcomp.php?edit=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
+                                        <a href="php/crud.php?delete=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                    <?php
+                                echo '</tr>';
+                            }
+                        } else {
+                            echo '<tr><td colspan="6">No records found.</td></tr>';
+                        }
                     ?>
                 </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
     <?php include_once 'includes/footer.php' ?>

@@ -100,7 +100,6 @@
             border: 2px solid black !important;
             margin-bottom: 2px !important;
         }
-        
     </style>
 </head>
 <body>
@@ -125,9 +124,16 @@
                     // Check if search query is set
                     if (isset($_GET['search'])) {
                         $search = mysqli_real_escape_string($conn, $_GET['search']);
-                        $sql = "SELECT * FROM join_course WHERE course_name LIKE '%$search%' ORDER BY course_name;";
+                        $sql = "SELECT jc.course_name, jc.enrollment_date, sl.usn, sl.fname, sl.lname
+                                FROM join_course jc
+                                LEFT JOIN studentlogin sl ON jc.usn = sl.usn
+                                WHERE jc.course_name LIKE '%$search%' OR sl.fname LIKE '%$search%' OR sl.lname LIKE '%$search%'
+                                ORDER BY jc.course_name;";
                     } else {
-                        $sql = "SELECT * FROM join_course ORDER BY course_name;";
+                        $sql = "SELECT jc.course_name, jc.enrollment_date, sl.usn, sl.fname, sl.lname
+                                FROM join_course jc
+                                LEFT JOIN studentlogin sl ON jc.usn = sl.usn
+                                ORDER BY jc.course_name;";
                     }
 
                     $res = mysqli_query($conn, $sql);
@@ -141,19 +147,21 @@
                         if ($row['course_name'] != $currentCourse) {
                             // If there was a previous course group, display the student count
                             if ($currentCourse != '') {
-                                echo '<tr class="bold-row"><td colspan="3" class="total-students-right"><strong>Total Students: ' . $studentCount . '</strong></td></tr>';
-                                echo '<tr><td colspan="3">&nbsp;</td></tr>';
+                                echo '<tr class="bold-row"><td colspan="4" class="total-students-right"><strong>Total Students: ' . $studentCount . '</strong></td></tr>';
+                                echo '<tr><td colspan="4">&nbsp;</td></tr>';
                             }
                             $currentCourse = $row['course_name'];
                             $studentCount = 0;
-                            echo '<tr><td colspan="3" class="course-name"><strong>Course Name: ' . $currentCourse . '</strong></td></tr>';
-                            echo '<tr><th>Student Name</th><th>Enrollment Date</th></tr>';
+                            echo '<tr><td colspan="4" class="course-name"><strong>Course Name: ' . $currentCourse . '</strong></td></tr>';
+                            echo '<tr><th>USN</th><th>Student Name</th><th>Enrollment Date</th></tr>';
                         }
                 
                         $studentCount++;
+                        $studentName = $row['fname'] . ' ' . $row['lname'];
                         
                         echo '<tr>';
-                        echo '<td>' . $row['student_name'] . '</td>';
+                        echo '<td>' . $row['usn'] . '</td>';
+                        echo '<td>' . $studentName . '</td>';
                         echo '<td>' . $row['enrollment_date'] . '</td>';
                         echo '</tr>'; 
                     }
@@ -161,7 +169,7 @@
 
                     // Display the student count for the last course group
                     if ($currentCourse != '') {
-                        echo '<tr class="bold-row"><td colspan="3" class="total-students-right"><strong>Total Students: ' . $studentCount . '</strong></td></tr>';
+                        echo '<tr class="bold-row"><td colspan="4" class="total-students-right"><strong>Total Students: ' . $studentCount . '</strong></td></tr>';
                     }
                     ?>
                     </thead>

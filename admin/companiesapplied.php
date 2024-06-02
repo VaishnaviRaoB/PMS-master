@@ -105,8 +105,8 @@
         .attended {
             background-color: yellow !important; /* Yellow color for attended */
         }
-        .applied {
-            background-color: lightblue !important; /* Red color for applied */
+        .rejected {
+            background-color: lightcoral !important; /* Light coral color for rejected */
         }
     </style>
 </head>
@@ -125,32 +125,42 @@
                 <table class="table table-hover table-borderless table-light">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Company Name</th>
+                        <th scope="col">USN</th>
                         <th scope="col">Student Name</th>
+                        <th scope="col">Company Name</th>
+                      
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                         // Include your database connection file
-                        include_once 'includes/db.inc.php';
-
+                       
                         // Check if search query is set
                         if (isset($_GET['search'])) {
                             $search = mysqli_real_escape_string($conn, $_GET['search']);
-                            $sql = "SELECT * FROM applied WHERE company LIKE '%$search%' ORDER BY 
-                                    CASE
-                                        WHEN status = 'selected' THEN 1
-                                        WHEN status = 'attended' THEN 2
-                                        ELSE 3
-                                    END, id;";
+                            $sql = "SELECT a.usn, a.student_name, c.name as company, a.status, a.chances
+                                    FROM applied a
+                                    JOIN company c ON a.company = c.name
+                                    WHERE c.name LIKE '%$search%'
+                                    ORDER BY 
+                                        CASE
+                                            WHEN a.status = 'Selected' THEN 1
+                                            WHEN a.status = 'Attended' THEN 2
+                                            WHEN a.status = 'Rejected' THEN 3
+                                            ELSE 4
+                                        END, a.usn;";
                         } else {
-                            $sql = "SELECT * FROM applied ORDER BY 
-                                    CASE
-                                        WHEN status = 'selected' THEN 1
-                                        WHEN status = 'attended' THEN 2
-                                        ELSE 3
-                                    END, id;";
+                            $sql = "SELECT a.usn, a.student_name, c.name as company, a.status, a.chances
+                                    FROM applied a
+                                    JOIN company c ON a.company = c.name
+                                    ORDER BY 
+                                        CASE
+                                            WHEN a.status = 'Selected' THEN 1
+                                            WHEN a.status = 'Attended' THEN 2
+                                            WHEN a.status = 'Rejected' THEN 3
+                                            ELSE 4
+                                        END, a.usn;";
                         }
 
                         $res = mysqli_query($conn, $sql);
@@ -164,26 +174,27 @@
                                 if ($row['status'] !== $current_status) {
                                     if ($current_status !== "") {
                                         // Print the total count for the previous group
-                                        echo '<tr class="group-total"><td colspan="4">Total: ' . $status_count . '</td></tr>';
-                                        echo '<tr><td colspan="3">&nbsp;</td></tr>';
+                                        echo '<tr class="group-total"><td colspan="5">Total: ' . $status_count . '</td></tr>';
+                                        echo '<tr><td colspan="5">&nbsp;</td></tr>';
                                     }
                                     // Print the new group header
                                     $current_status = $row['status'];
                                     $status_count = 0;
-                                    echo '<tr class="group-header ' . strtolower($current_status) . '"><td colspan="4">Status: ' . ucfirst($current_status) . '</td></tr>';
+                                    echo '<tr class="group-header ' . strtolower($current_status) . '"><td colspan="5">Status: ' . ucfirst($current_status) . '</td></tr>';
                                 }
                                 $status_count++;
                                 echo '<tr>';
-                                    echo '<td>'.$row['id'].'</td>';
-                                    echo '<td>'.$row['company'].'</td>';
-                                    echo '<td>'.$row['name'].'</td>';
+                                    echo '<td>' . $row['usn'] . '</td>';
+                                    echo '<td>' . $row['student_name'] . '</td>';
+                                    echo '<td>' . $row['company'] . '</td>';
+                                    
+                                    
                                 echo '</tr>';
                             }
                             // Print the total count for the last group
-                            echo '<tr class="group-total"><td colspan="4">Total: ' . $status_count . '</td></tr>';
-                            
+                            echo '<tr class="group-total"><td colspan="5">Total: ' . $status_count . '</td></tr>';
                         } else {
-                            echo '<tr><td colspan="4">No companies found.</td></tr>';
+                            echo '<tr><td colspan="5">No companies found.</td></tr>';
                         }
                     ?>
                 </tbody>
