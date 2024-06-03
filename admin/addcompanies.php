@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add Company</title>
     <link rel="stylesheet" type="text/css" href="css/addcomp.css">
+    <!-- Include necessary scripts for Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <?php include_once 'includes/head.php'; ?>
 </head>
 
 <body>
-<?php include_once 'includes/nav.php'; ?>
     <div>
         <img id="img2" src="../images/walk.png" width="550px" style="position: absolute; position: fixed; z-index: 1; margin-left: 60%; margin-top: 50vh;">
     </div>
@@ -30,8 +33,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="website">Website</label>
-                            <input type="url" pattern="^(https?:\/\/|www\.)[^\s$.?#].[^\s]*$"  class="form-control" id="website" name="website" placeholder="Website" required>
-							
+                            <input type="url" pattern="^(https?:\/\/|www\.)[^\s$.?#].[^\s]*$" class="form-control" id="website" name="website" placeholder="Website" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="ctype">Industry Type</label>
