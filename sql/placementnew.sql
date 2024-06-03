@@ -98,23 +98,19 @@ CREATE TABLE `company` (
 --
 -- Dumping data for table `company`
 --
-
 INSERT INTO `company` (`name`, `type`, `address`, `number`, `website`, `status`, `minperc`) VALUES
-('General Electric', 'Manufacturing', 'Boston, USA', '6174433000', 'https://www.ge.com', 'Active', '70'),
-('Toyota Motor Corporation', 'Manufacturing', 'Toyota, Japan', '5652812121', 'https://www.toyota-global.com', 'Active', '75'),
-('Siemens AG', 'Manufacturing', 'Munich, Germany', '8912345678', 'https://www.siemens.com', 'Active', '80'),
-('Tata Motors', 'Manufacturing', 'Mumbai, India', '2266668282', 'https://www.tatamotors.com', 'Active', '65'),
-('Caterpillar Inc.', 'Manufacturing', 'Deerfield, USA', '2245514000', 'https://www.caterpillar.com', 'Active', '70'),
-('Accenture', 'BPO', 'Dublin, Ireland', '1234567890', 'https://www.accenture.com', 'Active', '60'),
-('Concentrix', 'BPO', 'Fremont, USA', '18002086600', 'https://www.concentrix.com', 'Active', '55'),
-('Genpact', 'BPO', 'New York, USA', '2128966600', 'https://www.genpact.com', 'Active', '60'),
-('WNS Global Services', 'BPO', 'Mumbai, India', '2242202143', 'https://www.wns.com', 'Active', '65'),
-('Teleperformance', 'BPO', 'Paris, France', '144300911', 'https://www.teleperformance.com', 'Active', '70'),
 ('Infosys', 'IT', 'Bangalore, India', '8088888888', 'https://www.infosys.com', 'Active', '60'),
-('Tata Consultancy Services (TCS)', 'IT', 'Mumbai, India', '9099999999', 'https://www.tcs.com', 'Active', '70'),
-('Tech Mahindra', 'IT', 'Pune, India', '2022022022', 'https://www.techmahindra.com', 'Active', '70'),
-('Wipro', 'IT', 'Bangalore, India', '8077777777', 'https://www.wipro.com', 'Active', '65'),
-('HCL Technologies', 'IT', 'Noida, India', '1201201201', 'https://www.hcltech.com', 'Active', '65');
+('Accenture', 'BPO', 'Dublin, Ireland', '1234567890', 'https://www.accenture.com', 'Active', '60'),
+('McKinsey & Company', 'Consulting', 'New York, USA', '2124467000', 'https://www.mckinsey.com', 'Active', '75'),
+('General Electric', 'Manufacturing', 'Boston, USA', '6174433000', 'https://www.ge.com', 'Active', '70'),
+('Johnson & Johnson', 'Healthcare', 'New Brunswick, USA', '7325240400', 'https://www.jnj.com', 'Active', '75'),
+('JPMorgan Chase', 'Finance', 'New York, USA', '2122706000', 'https://www.jpmorganchase.com', 'Active', '80'),
+('Walmart', 'Retail', 'Bentonville, USA', '4792734000', 'https://www.walmart.com', 'Active', '80'),
+('Harvard University', 'Education', 'Cambridge, USA', '6174951000', 'https://www.harvard.edu', 'Active', '90'),
+('Marriott International', 'Hospitality', 'Bethesda, USA', '3013803000', 'https://www.marriott.com', 'Active', '70'),
+('CBRE Group', 'Real Estate', 'Los Angeles, USA', '2136133333', 'https://www.cbre.com', 'Active', '70'),
+('Verizon Communications', 'Telecommunications', 'New York, USA', '2123951000', 'https://www.verizon.com', 'Active', '70');
+
 
 
 -- --------------------------------------------------------
