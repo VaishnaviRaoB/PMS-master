@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include_once 'includes/db.inc.php'; // Make sure this file includes your database connection code
+
 ?>
 
 <!DOCTYPE html>
@@ -23,30 +23,31 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
     </style>
 </head>
 <body>
-    <?php include_once 'includes/nav.php'; ?>
-    <form action="php/viewcomp.inc.php" method="POST">
+
+    <form action="php/viewcompies.php" method="POST">
         <div class="container">
             <h1 class="mt-4">Company Details</h1>
             <?php 
-            if (isset($_GET['id'])) {
-                $id = mysqli_real_escape_string($conn, $_GET['id']);
+            if (isset($_GET['usn']) && isset($_GET['student_name'])) {
+                $usn = mysqli_real_escape_string($conn, $_GET['usn']);
+                $student_name = mysqli_real_escape_string($conn, $_GET['student_name']);
                 // Modify the SQL query to filter data based on the current user's username
                 $user = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-                $sql = "SELECT * FROM applied WHERE id='$id' AND student_name='$user';";
+                $sql = "SELECT * FROM applied WHERE usn='$usn' AND student_name='$student_name' AND student_name='$user';";
                 $res = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($res) > 0) {
                     while ($row = mysqli_fetch_assoc($res)) {
                         echo '<div class="form-group row">';
-                        echo '<label for="id" class="col-sm-2 col-form-label">ID</label>';
+                        echo '<label for="usn" class="col-sm-2 col-form-label">USN</label>';
                         echo '<div class="col-sm-10">';
-                        echo '<input type="text" class="form-control" id="id" name="id" value="'.$row['id'].'" readonly>';
+                        echo '<input type="text" class="form-control" id="usn" name="usn" value="'.$row['usn'].'" readonly>';
                         echo '</div>';
                         echo '</div>';
                         
                         echo '<div class="form-group row">';
                         echo '<label for="name" class="col-sm-2 col-form-label">Student Name</label>';
                         echo '<div class="col-sm-10">';
-                        echo '<input type="text" class="form-control" id="name" name="name" value="'.$row['name'].'" readonly>';
+                        echo '<input type="text" class="form-control" id="name" name="name" value="'.$row['student_name'].'" readonly>';
                         echo '</div>';
                         echo '</div>';
                         
@@ -86,4 +87,3 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
     <?php include_once 'includes/footer.php'; ?>
 </body>
 </html>
-

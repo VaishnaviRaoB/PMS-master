@@ -7,20 +7,40 @@ include_once 'includes/nav.php';
 include_once 'includes/db.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['company'])) {
-    // Get the form data
-    $userName = $_SESSION['user_name']; // Retrieve user's name from session
-    $userUSN = $_SESSION['user_usn']; // Retrieve user's USN from session
-    $companyName = $_POST['company'];
+    // Check if the user's USN is set in the session
+    if (isset($_SESSION['usn']) && !empty($_SESSION['usn'])) {
+        // Get the form data
+        $userUSN = $_SESSION['usn']; // Retrieve user's USN from session
+        $companyName = $_POST['company'];
 
-    // Insert the application into the database
-    $sql = "INSERT INTO applied (company, student_name, usn) VALUES ('$companyName', '$userName', '$userUSN')";
-    if (mysqli_query($conn, $sql)) {
-        // Redirect to the same page with a success message
-        header("Location: ".$_SERVER['PHP_SELF']."?success=true&company=" . urlencode($companyName));
-        exit();
+        // Fetch user's name from the database
+        $sql = "SELECT fname, lname FROM studentlogin WHERE usn = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $userUSN);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $firstName, $lastName);
+        mysqli_stmt_fetch($stmt);
+        $userName = $firstName . ' ' . $lastName;
+        mysqli_stmt_close($stmt);
+
+        // Insert the application into the database
+        $sql = "INSERT INTO applied (company, student_name, usn) VALUES (?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, 'sss', $companyName, $userName, $userUSN);
+
+        if (mysqli_stmt_execute($stmt)) {
+            // Redirect to the same page with a success message
+            header("Location: ".$_SERVER['PHP_SELF']."?success=true&company=" . urlencode($companyName));
+            exit();
+        } else {
+            // If there's an error, display the error message
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+
+        mysqli_stmt_close($stmt);
     } else {
-        // If there's an error, display the error message
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        // If the user's USN is not set, display an error message
+        echo "Error: User's USN is not set.";
     }
 }
 
@@ -61,7 +81,6 @@ if (isset($_GET['success']) && $_GET['success'] == 'true' && isset($_GET['compan
             margin-left: 50px;
             margin-top: 30px;
             font-weight: 550;
-    
         }
 
         .search-container {
@@ -128,12 +147,11 @@ if (isset($_GET['success']) && $_GET['success'] == 'true' && isset($_GET['compan
     </style>
 </head>
 <body>
-   
-        <h1 >Apply to Company</h1>
-        <div class="search-container">
-            <input type="text" class="form-control" id="searchInput" placeholder="Search for a company">
-        </div>
-        <div class="company-table-container">
+    <h1>Apply to Company</h1>
+    <div class="search-container">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search for a company">
+    </div>
+    <div class="company-table-container">
         <div class="container">
             <form method="POST" id="applyForm">
                 <table class="company-table">
@@ -196,3 +214,4 @@ if (isset($_GET['success']) && $_GET['success'] == 'true' && isset($_GET['compan
     <div style="margin-bottom: 50px;"></div>
 </body>
 </html>
+
