@@ -8,12 +8,13 @@
     <link rel="stylesheet" type="text/css" href="css/addcomp.css">
     <?php include_once 'includes/head.php'; ?>
 </head>
+
 <body>
+<?php include_once 'includes/nav.php'; ?>
     <div>
         <img id="img2" src="../images/walk.png" width="550px" style="position: absolute; position: fixed; z-index: 1; margin-left: 60%; margin-top: 50vh;">
     </div>
     <img src="../images/add.png" id="img1">
-    <?php include_once 'includes/nav.php'; ?>
     <div class="content" style="margin-top: 40px; margin-left: 20px;">
         <h1 class="form-row justify-content-center" style="margin-left: 100px;">Add Company</h1> <br>
         <form action="php/addcomp.inc.php" autocomplete="off" method="POST">
@@ -37,7 +38,6 @@
                             <select class="custom-select" id="ctype" name="ctype" required>
                                 <option value="IT">IT</option>
                                 <option value="BPO">BPO</option>
-                                <option value="Software">Software</option>
                                 <option value="Consulting">Consulting</option>
                                 <option value="Manufacturing">Manufacturing</option>
                                 <option value="Healthcare">Healthcare</option>
@@ -91,3 +91,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+
