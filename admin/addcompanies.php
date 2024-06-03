@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<?php include_once 'includes/head.php'; ?>
     <div>
         <img id="img2" src="../images/walk.png" width="550px" style="position: absolute; position: fixed; z-index: 1; margin-left: 60%; margin-top: 50vh;">
     </div>

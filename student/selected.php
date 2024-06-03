@@ -3,7 +3,6 @@ include_once 'includes/head.php';
 include_once 'includes/nav.php';
 
 // Start the session if it's not already started
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -111,7 +110,7 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
             <table class="table table-hover table-borderless table-light">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">USN</th>
                         <th scope="col">Company Name</th>
                         <th scope="col">Student Name</th>
                         <th scope="col">Status</th>
@@ -119,28 +118,38 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                 </thead>
                 <tbody>
                     <?php
-                    $user = $_SESSION['username'];
-                    $sql = "SELECT * FROM applied WHERE student_name=? AND status='Selected';";
-                    $stmt = mysqli_stmt_init($conn);
-                    if (mysqli_stmt_prepare($stmt, $sql)) {
-                        mysqli_stmt_bind_param($stmt, "s", $user);
-                        mysqli_stmt_execute($stmt);
-                        $result = mysqli_stmt_get_result($stmt);
-                        $rowCount = mysqli_num_rows($result);
-                        if ($rowCount > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<tr>';
-                                echo '<td>'.$row['id'].'</td>';
-                                echo '<td>'.$row['company'].'</td>';
-                                echo '<td>'.$row['name'].'</td>';
-                                echo '<td>'.$row['status'].'</td>';
-                                echo '</tr>';
+                    if (isset($_SESSION['username'])) {
+                        $user = $_SESSION['username'];
+                        $sql = "SELECT usn, company, student_name, status FROM applied WHERE student_name=? AND status='Selected';";
+                        $stmt = mysqli_stmt_init($conn);
+                        if (mysqli_stmt_prepare($stmt, $sql)) {
+                            mysqli_stmt_bind_param($stmt, "s", $user);
+                            mysqli_stmt_execute($stmt);
+                            $result = mysqli_stmt_get_result($stmt);
+                            if (!$result) {
+                                echo '<tr><td colspan="4" class="no-trainings">Error in fetching results: ' . mysqli_error($conn) . '</td></tr>';
+                            } else {
+                                $rowCount = mysqli_num_rows($result);
+                                if ($rowCount > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo '<tr>';
+                                        echo '<td>' . htmlspecialchars($row['usn']) . '</td>';
+                                        echo '<td>' . htmlspecialchars($row['company']) . '</td>';
+                                        echo '<td>' . htmlspecialchars($row['student_name']) . '</td>';
+                                        echo '<td>' . htmlspecialchars($row['status']) . '</td>';
+                                        echo '</tr>';
+                                    }
+                                } else {
+                                    echo '<tr><td colspan="4" class="no-trainings">You are not selected for any company</td></tr>';
+                                }
                             }
+                            mysqli_stmt_close($stmt);
                         } else {
-                            echo '<tr><td colspan="4">You are not selected for any company</td></tr>';
+                            echo '<tr><td colspan="4" class="no-trainings">Error in preparing statement: ' . mysqli_error($conn) . '</td></tr>';
                         }
+                    } else {
+                        echo '<tr><td colspan="4" class="no-trainings">Please log in to view your selected companies</td></tr>';
                     }
-                    mysqli_stmt_close($stmt);
                     ?>
                 </tbody>
             </table>
