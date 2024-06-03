@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2024 at 01:45 PM
+-- Generation Time: Jun 03, 2024 at 09:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,10 +42,10 @@ CREATE TABLE `adminlogin` (
 
 INSERT INTO `adminlogin` (`uname`, `pwd`, `fname`, `lname`, `email`, `phone`) VALUES
 ('admin1', 'pass123', 'John', 'Doe', 'john.doe@example.com', '1234567890'),
-('admin2', 'pass456', 'Jane', 'Smith', 'jane.smith@example.com', '0987654321'),
-('admin3', 'pass789', 'Alice', 'Johnson', 'alice.johnson@example.com', '5555555555'),
 ('admin4', 'pass321', 'Bob', 'Brown', 'bob.brown@example.com', '4444444444'),
-('admin5', 'pass654', 'Charlie', 'Davis', 'charlie.davis@example.com', '3333333333');
+('admin2', 'pass456', 'Jane', 'Smith', 'jane.smith@example.com', '0987654321'),
+('admin5', 'pass654', 'Charlie', 'Davis', 'charlie.davis@example.com', '3333333333'),
+('admin3', 'pass789', 'Alice', 'Johnson', 'alice.johnson@example.com', '5555555555');
 
 -- --------------------------------------------------------
 
@@ -54,6 +54,7 @@ INSERT INTO `adminlogin` (`uname`, `pwd`, `fname`, `lname`, `email`, `phone`) VA
 --
 
 CREATE TABLE `applied` (
+  `id` int(11) NOT NULL,
   `usn` varchar(20) NOT NULL,
   `student_name` varchar(100) NOT NULL,
   `company` varchar(200) DEFAULT NULL,
@@ -65,19 +66,16 @@ CREATE TABLE `applied` (
 -- Dumping data for table `applied`
 --
 
-INSERT INTO `applied` (`usn`, `student_name`, `company`, `status`, `chances`)
-VALUES
-('USN001', 'Alice Wonderland', 'General Electric', 'Selected', 'High'),
-('USN002', 'Bob Builder', 'Tata Consultancy Services (TCS)', 'Rejected', 'Low'),
-('USN003', 'Charlie Chocolate', 'Wipro', 'Attended', 'High'),
-('USN004', 'David Copperfield', 'General Electric', 'Selected', 'High'),
-('USN005', 'Eve Adams', 'Infosys', 'Attended', 'Low'),
-('USN001', 'Alice Wonderland', 'Siemens AG', 'Attended', 'Medium'),
-('USN002', 'Bob Builder', 'Infosys', 'Unknown', NULL),
-('USN004', 'David Copperfield', 'Siemens AG', 'Rejected', 'Medium'),
-('USN005', 'Eve Adams', 'Concentrix', 'Applied', 'High');
-
-
+INSERT INTO `applied` (`id`, `usn`, `student_name`, `company`, `status`, `chances`) VALUES
+(1, 'USN001', 'Alice Wonderland', 'General Electric', 'Selected', 'High'),
+(2, 'USN002', 'Bob Builder', 'Tata Consultancy Services (TCS)', 'Rejected', 'Low'),
+(3, 'USN003', 'Charlie Chocolate', 'Wipro', 'Attended', 'High'),
+(4, 'USN004', 'David Copperfield', 'General Electric', 'Selected', 'High'),
+(5, 'USN005', 'Eve Adams', 'Infosys', 'Attended', 'Low'),
+(6, 'USN001', 'Alice Wonderland', 'Siemens AG', 'Attended', 'Medium'),
+(7, 'USN002', 'Bob Builder', 'Infosys', 'Unknown', NULL),
+(8, 'USN004', 'David Copperfield', 'Siemens AG', 'Rejected', 'Medium'),
+(9, 'USN005', 'Eve Adams', 'Concentrix', 'Applied', 'High');
 
 -- --------------------------------------------------------
 
@@ -98,20 +96,19 @@ CREATE TABLE `company` (
 --
 -- Dumping data for table `company`
 --
+
 INSERT INTO `company` (`name`, `type`, `address`, `number`, `website`, `status`, `minperc`) VALUES
-('Infosys', 'IT', 'Bangalore, India', '8088888888', 'https://www.infosys.com', 'Active', '60'),
 ('Accenture', 'BPO', 'Dublin, Ireland', '1234567890', 'https://www.accenture.com', 'Active', '60'),
-('McKinsey & Company', 'Consulting', 'New York, USA', '2124467000', 'https://www.mckinsey.com', 'Active', '75'),
+('CBRE Group', 'Real Estate', 'Los Angeles, USA', '2136133333', 'https://www.cbre.com', 'Active', '70'),
 ('General Electric', 'Manufacturing', 'Boston, USA', '6174433000', 'https://www.ge.com', 'Active', '70'),
+('Harvard University', 'Education', 'Cambridge, USA', '6174951000', 'https://www.harvard.edu', 'Active', '90'),
+('Infosys', 'IT', 'Bangalore, India', '8088888888', 'https://www.infosys.com', 'Active', '60'),
 ('Johnson & Johnson', 'Healthcare', 'New Brunswick, USA', '7325240400', 'https://www.jnj.com', 'Active', '75'),
 ('JPMorgan Chase', 'Finance', 'New York, USA', '2122706000', 'https://www.jpmorganchase.com', 'Active', '80'),
-('Walmart', 'Retail', 'Bentonville, USA', '4792734000', 'https://www.walmart.com', 'Active', '80'),
-('Harvard University', 'Education', 'Cambridge, USA', '6174951000', 'https://www.harvard.edu', 'Active', '90'),
 ('Marriott International', 'Hospitality', 'Bethesda, USA', '3013803000', 'https://www.marriott.com', 'Active', '70'),
-('CBRE Group', 'Real Estate', 'Los Angeles, USA', '2136133333', 'https://www.cbre.com', 'Active', '70'),
-('Verizon Communications', 'Telecommunications', 'New York, USA', '2123951000', 'https://www.verizon.com', 'Active', '70');
-
-
+('McKinsey & Company', 'Consulting', 'New York, USA', '2124467000', 'https://www.mckinsey.com', 'Active', '75'),
+('Verizon Communications', 'Telecommunications', 'New York, USA', '2123951000', 'https://www.verizon.com', 'Active', '70'),
+('Walmart', 'Retail', 'Bentonville, USA', '4792734000', 'https://www.walmart.com', 'Active', '80');
 
 -- --------------------------------------------------------
 
@@ -145,6 +142,7 @@ INSERT INTO `feed` (`id`, `user`, `message`, `date`, `time`) VALUES
 --
 
 CREATE TABLE `join_course` (
+  `id` int(11) NOT NULL,
   `course_name` varchar(255) NOT NULL,
   `enrollment_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `student_name` varchar(100) NOT NULL,
@@ -155,12 +153,12 @@ CREATE TABLE `join_course` (
 -- Dumping data for table `join_course`
 --
 
-INSERT INTO `join_course` (`course_name`, `enrollment_date`, `student_name`, `usn`) VALUES
-('Data Structures', '2024-06-01 03:30:00', 'Alice Wonderland', 'USN001'),
-('Algorithms', '2024-06-01 03:30:00', 'Bob Builder', 'USN002'),
-('Operating Systems', '2024-06-01 03:30:00', 'Charlie Chocolate', 'USN003'),
-('Database Management', '2024-06-01 03:30:00', 'David Copperfield', 'USN004'),
-('Machine Learning', '2024-06-01 03:30:00', 'Eve Adams', 'USN005');
+INSERT INTO `join_course` (`id`, `course_name`, `enrollment_date`, `student_name`, `usn`) VALUES
+(1, 'Data Structures', '2024-05-31 22:00:00', 'Alice Wonderland', 'USN001'),
+(2, 'Algorithms', '2024-05-31 22:00:00', 'Bob Builder', 'USN002'),
+(3, 'Operating Systems', '2024-05-31 22:00:00', 'Charlie Chocolate', 'USN003'),
+(4, 'Database Management', '2024-05-31 22:00:00', 'David Copperfield', 'USN004'),
+(5, 'Machine Learning', '2024-05-31 22:00:00', 'Eve Adams', 'USN005');
 
 -- --------------------------------------------------------
 
@@ -213,18 +211,6 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `training`
---
-
-INSERT INTO `training` (`course`, `lecturer`, `description`, `start_date`, `end_date`, `duration`) VALUES
-('Data Structures', 'Dr. Smith', 'In-depth study of data structures.', '2024-06-10', '2024-07-10', 30),
-('Algorithms', 'Dr. Johnson', 'Algorithm design and analysis.', '2024-06-15', '2024-07-15', 30),
-('Operating Systems', 'Prof. Brown', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30),
-('Database Management', 'Dr. White', 'Database systems and SQL.', '2024-06-25', '2024-07-25', 30),
-('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30),
-('dbms', 'a', 'abc', '2024-06-20', '2024-07-06', 30);
-
---
 -- Indexes for dumped tables
 --
 
@@ -232,14 +218,14 @@ INSERT INTO `training` (`course`, `lecturer`, `description`, `start_date`, `end_
 -- Indexes for table `adminlogin`
 --
 ALTER TABLE `adminlogin`
-  ADD PRIMARY KEY (`uname`);
+  ADD PRIMARY KEY (`pwd`),
+  ADD UNIQUE KEY `uname` (`uname`);
 
 --
 -- Indexes for table `applied`
 --
 ALTER TABLE `applied`
-  ADD KEY `usn` (`usn`),
-  ADD KEY `company` (`company`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `company`
@@ -257,7 +243,7 @@ ALTER TABLE `feed`
 -- Indexes for table `join_course`
 --
 ALTER TABLE `join_course`
-  ADD KEY `usn` (`usn`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `studentlogin`
@@ -266,14 +252,26 @@ ALTER TABLE `studentlogin`
   ADD PRIMARY KEY (`usn`);
 
 --
--- Constraints for dumped tables
+-- Indexes for table `training`
+--
+ALTER TABLE `training`
+  ADD PRIMARY KEY (`course`,`start_date`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Constraints for table `join_course`
+-- AUTO_INCREMENT for table `applied`
+--
+ALTER TABLE `applied`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `join_course`
 --
 ALTER TABLE `join_course`
-  ADD CONSTRAINT `join_course_ibfk_1` FOREIGN KEY (`usn`) REFERENCES `studentlogin` (`usn`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

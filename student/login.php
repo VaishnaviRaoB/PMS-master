@@ -1,21 +1,26 @@
-<?php include_once 'includes/head.php';
-include_once 'includes/nav.php';?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    <!-- Include any necessary CSS files -->
-</head>
-<body>
-    <form action="php/login.inc.php" method="POST">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit" name="login">Login</button>
-    </form>
-</body>
-</html>
+<?php
+session_start();
+include_once 'includes/db.inc.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT usn, pwd FROM studentlogin WHERE uname = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $usn, $hashedPwd);
+    mysqli_stmt_fetch($stmt);
+
+    if (password_verify($password, $hashedPwd)) {
+        $_SESSION['usn'] = $usn;
+        header("Location: apply.php");
+        exit();
+    } else {
+        echo "Invalid username or password.";
+    }
+
+    mysqli_stmt_close($stmt);
+}
+?>

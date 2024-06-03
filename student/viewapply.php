@@ -1,10 +1,9 @@
 <?php
-session_start(); // Start the session
+ // Start the session
 
 include_once 'includes/head.php';
 include_once 'includes/nav.php';
 
-include_once 'includes/db.inc.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['company'])) {
     // Check if the user's USN is set in the session
@@ -59,7 +58,7 @@ if (isset($_GET['success']) && $_GET['success'] == 'true' && isset($_GET['compan
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Apply to Company</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/reg.css"> 
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -214,4 +213,3 @@ if (isset($_GET['success']) && $_GET['success'] == 'true' && isset($_GET['compan
     <div style="margin-bottom: 50px;"></div>
 </body>
 </html>
-
