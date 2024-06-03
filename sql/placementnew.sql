@@ -67,15 +67,16 @@ CREATE TABLE `applied` (
 
 INSERT INTO `applied` (`usn`, `student_name`, `company`, `status`, `chances`)
 VALUES
-('USN001', 'Alice Wonderland', 'Google', 'Selected', 'High'),
-('USN002', 'Bob Builder', 'TCS', 'Rejected', 'Low'),
+('USN001', 'Alice Wonderland', 'General Electric', 'Selected', 'High'),
+('USN002', 'Bob Builder', 'Tata Consultancy Services (TCS)', 'Rejected', 'Low'),
 ('USN003', 'Charlie Chocolate', 'Wipro', 'Attended', 'High'),
-('USN004', 'David Copperfield', 'Google', 'Selected', 'High'),
+('USN004', 'David Copperfield', 'General Electric', 'Selected', 'High'),
 ('USN005', 'Eve Adams', 'Infosys', 'Attended', 'Low'),
-('USN001', 'Alice Wonderland', 'Microsoft', 'Attended', 'Medium'),
+('USN001', 'Alice Wonderland', 'Siemens AG', 'Attended', 'Medium'),
 ('USN002', 'Bob Builder', 'Infosys', 'Unknown', NULL),
-('USN004', 'David Copperfield', 'Microsoft', 'Rejected', 'Medium'),
-('USN005', 'Eve Adams', 'TCS', 'Applied', 'High');
+('USN004', 'David Copperfield', 'Siemens AG', 'Rejected', 'Medium'),
+('USN005', 'Eve Adams', 'Concentrix', 'Applied', 'High');
+
 
 
 -- --------------------------------------------------------
@@ -99,18 +100,22 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`name`, `type`, `address`, `number`, `website`, `status`, `minperc`) VALUES
-('Amazon', 'Software', 'Seattle, USA', '1234567890', 'https://www.amazon.com', 'Active', '80'),
-('Apple Inc.', 'Software', 'Cupertino, USA', '0987654321', 'https://www.apple.com', 'Active', '85'),
-('Google LLC', 'Software', 'Mountain View, USA', '1111111111', 'https://www.google.com', 'Active', '80'),
-('HCL Technologies', 'IT', 'Noida, India', '1201201201', 'https://www.hcltech.com', 'Active', '65'),
-('IBM', 'Software', 'Armonk, USA', '2222222222', 'https://www.ibm.com', 'Active', '70'),
+('General Electric', 'Manufacturing', 'Boston, USA', '6174433000', 'https://www.ge.com', 'Active', '70'),
+('Toyota Motor Corporation', 'Manufacturing', 'Toyota, Japan', '5652812121', 'https://www.toyota-global.com', 'Active', '75'),
+('Siemens AG', 'Manufacturing', 'Munich, Germany', '8912345678', 'https://www.siemens.com', 'Active', '80'),
+('Tata Motors', 'Manufacturing', 'Mumbai, India', '2266668282', 'https://www.tatamotors.com', 'Active', '65'),
+('Caterpillar Inc.', 'Manufacturing', 'Deerfield, USA', '2245514000', 'https://www.caterpillar.com', 'Active', '70'),
+('Accenture', 'BPO', 'Dublin, Ireland', '1234567890', 'https://www.accenture.com', 'Active', '60'),
+('Concentrix', 'BPO', 'Fremont, USA', '18002086600', 'https://www.concentrix.com', 'Active', '55'),
+('Genpact', 'BPO', 'New York, USA', '2128966600', 'https://www.genpact.com', 'Active', '60'),
+('WNS Global Services', 'BPO', 'Mumbai, India', '2242202143', 'https://www.wns.com', 'Active', '65'),
+('Teleperformance', 'BPO', 'Paris, France', '144300911', 'https://www.teleperformance.com', 'Active', '70'),
 ('Infosys', 'IT', 'Bangalore, India', '8088888888', 'https://www.infosys.com', 'Active', '60'),
-('Microsoft Corporation', 'Software', 'Redmond, USA', '5555555555', 'https://www.microsoft.com', 'Active', '75'),
-('Oracle Corporation', 'Software', 'Austin, USA', '3333333333', 'https://www.oracle.com', 'Active', '75'),
-('Salesforce', 'Software', 'San Francisco, USA', '6666666666', 'https://www.salesforce.com', 'Active', '75'),
 ('Tata Consultancy Services (TCS)', 'IT', 'Mumbai, India', '9099999999', 'https://www.tcs.com', 'Active', '70'),
 ('Tech Mahindra', 'IT', 'Pune, India', '2022022022', 'https://www.techmahindra.com', 'Active', '70'),
-('Wipro', 'IT', 'Bangalore, India', '8077777777', 'https://www.wipro.com', 'Active', '65');
+('Wipro', 'IT', 'Bangalore, India', '8077777777', 'https://www.wipro.com', 'Active', '65'),
+('HCL Technologies', 'IT', 'Noida, India', '1201201201', 'https://www.hcltech.com', 'Active', '65');
+
 
 -- --------------------------------------------------------
 
