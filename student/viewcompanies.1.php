@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <?php include_once 'includes/head.php'; ?>
 <?php include_once 'includes/nav.php'; ?>
+=======
+>>>>>>> 3768d1af0d1d91ecdaa172cf65d713e1a94613e2
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>View Companies</title>
+<<<<<<< HEAD
     
+=======
+    <?php include_once 'includes/head.php'; ?>
+>>>>>>> 3768d1af0d1d91ecdaa172cf65d713e1a94613e2
     <style>
         .search-container {
             display: flex;
@@ -85,7 +92,11 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     
+=======
+    <?php include_once 'includes/nav.php'; ?>
+>>>>>>> 3768d1af0d1d91ecdaa172cf65d713e1a94613e2
     <div class="container" style="z-index: 2;">
         <h1 class="form-row justify-content-center mt-4">Companies</h1>
         <div class="search-container mt-4">
@@ -104,7 +115,11 @@
                         <th scope="col">Website</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Status</th>
+<<<<<<< HEAD
                       
+=======
+                        <th scope="col">Actions</th>
+>>>>>>> 3768d1af0d1d91ecdaa172cf65d713e1a94613e2
                     </tr>
                 </thead>
                 <tbody>
@@ -137,7 +152,14 @@
                             echo '<td>'.$row['number'].'</td>';
                             echo '<td>'.$row['status'].'</td>';
                             ?>
+<<<<<<< HEAD
                             
+=======
+                            <td>
+                                <a href="editcomp.php?edit=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
+                                <a href="php/crud.php?delete=<?php echo urlencode($row['name']); ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
+                            </td>
+>>>>>>> 3768d1af0d1d91ecdaa172cf65d713e1a94613e2
                             <?php
                             echo '</tr>';
                         }
