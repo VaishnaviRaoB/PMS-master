@@ -41,7 +41,7 @@ if (!empty($user)) {
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="cid">Student ID</label>
-                            <input type="text" class="form-control" id="cid" name="id" value="<?php echo $row['id']; ?>" readonly>
+                            <input type="text" class="form-control" id="usn" name="usn" value="<?php echo $row['usn']; ?>" readonly>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cname">Student Username</label>
