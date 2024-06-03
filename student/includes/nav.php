@@ -1,4 +1,7 @@
-
+<?php
+    if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+} ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
   <a class="navbar-brand" href="#"><img src="../images/smv.png" style="width: 60px; height: 60px;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,10 +32,7 @@
       </li>
          
     </ul>
-    <?php
-    if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-} ?>
+   
      <form class="form-inline my-2 my-lg-0">
           <li class="nav-item dropdown" style="list-style: none;">
           <button class="btn btn-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: 0 none;">

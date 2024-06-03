@@ -22,11 +22,11 @@ if (isset($_GET['edit'])) {
         $update_stmt->bind_param("ssssss", $new_name, $type, $website, $number, $status, $name);
         $update_stmt->execute();
 
-        header("Location: viewcompanies.php");
+        header("Location: viewcompanies.1.php");
         exit();
     }
 } else {
-    header("Location: view_companies.php");
+    header("Location: viewcompanies.1.php");
     exit();
 }
 ?>
