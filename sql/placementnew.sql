@@ -67,15 +67,15 @@ CREATE TABLE `applied` (
 --
 
 INSERT INTO `applied` (`id`, `usn`, `student_name`, `company`, `status`, `chances`) VALUES
-(1, 'USN001', 'Alice Wonderland', 'General Electric', 'Selected', 'High'),
-(2, 'USN002', 'Bob Builder', 'Tata Consultancy Services (TCS)', 'Rejected', 'Low'),
-(3, 'USN003', 'Charlie Chocolate', 'Wipro', 'Attended', 'High'),
-(4, 'USN004', 'David Copperfield', 'General Electric', 'Selected', 'High'),
-(5, 'USN005', 'Eve Adams', 'Infosys', 'Attended', 'Low'),
-(6, 'USN001', 'Alice Wonderland', 'Siemens AG', 'Attended', 'Medium'),
-(7, 'USN002', 'Bob Builder', 'Infosys', 'Unknown', NULL),
-(8, 'USN004', 'David Copperfield', 'Siemens AG', 'Rejected', 'Medium'),
-(9, 'USN005', 'Eve Adams', 'Concentrix', 'Applied', 'High');
+(1, 'USN001', 'Alice', 'General Electric', 'Selected', 'High'),
+(2, 'USN002', 'Bob', 'Tata Consultancy Services (TCS)', 'Rejected', 'Low'),
+(3, 'USN003', 'Charlie', 'Wipro', 'Attended', 'High'),
+(4, 'USN004', 'David', 'General Electric', 'Selected', 'High'),
+(5, 'USN005', 'Eve', 'Infosys', 'Attended', 'Low'),
+(6, 'USN001', 'Alice', 'Siemens AG', 'Selected', 'Medium'),
+(7, 'USN002', 'Bob', 'Infosys', 'Unknown', NULL),
+(8, 'USN004', 'David', 'Siemens AG', 'Rejected', 'Medium'),
+(9, 'USN005', 'Eve', 'Concentrix', 'Applied', 'High');
 
 -- --------------------------------------------------------
 
