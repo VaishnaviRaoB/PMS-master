@@ -50,20 +50,38 @@
 </form>
 
 <?php
+    session_start();
+    include_once '../includes/db.inc.php';
+
+    // Check if the form was submitted
     if (isset($_POST['joinnow'])) {
-        $course = $_POST['course'];
-        $user = $_SESSION['username'];
-        $sql = "INSERT INTO join_course (course_name, student_name) VALUES ('$course', '$user');";
-        
-        if (mysqli_query($conn, $sql)) {
+        $course = $_POST['course']; // Get selected course from the form
+        $username = $_SESSION['username']; // Get username from session
+
+        // Fetch USN from the database based on the username
+        $sql_usn = "SELECT usn FROM studentlogin WHERE fname = ?";
+        $stmt_usn = mysqli_prepare($conn, $sql_usn);
+        mysqli_stmt_bind_param($stmt_usn, "s", $username);
+        mysqli_stmt_execute($stmt_usn);
+        mysqli_stmt_bind_result($stmt_usn, $usn);
+        mysqli_stmt_fetch($stmt_usn);
+        mysqli_stmt_close($stmt_usn);
+
+        // Insert into join_course table
+        $sql_insert = "INSERT INTO join_course (course_name, student_name, usn) VALUES (?, ?, ?)";
+        $stmt_insert = mysqli_prepare($conn, $sql_insert);
+        mysqli_stmt_bind_param($stmt_insert, "sss", $course, $username, $usn); // Assuming usn is a string
+        if (mysqli_stmt_execute($stmt_insert)) {
             // Display success message if insertion was successful
             echo '<div class="alert alert-success" role="alert">Successfully joined the course!</div>';
         } else {
             // Display error message if there was an issue with the query
             echo '<div class="alert alert-danger" role="alert">Error: ' . mysqli_error($conn) . '</div>';
         }
+        mysqli_stmt_close($stmt_insert);
     }
 ?>
+
 
 <?php include_once 'includes/footer.php' ?>
 <script>

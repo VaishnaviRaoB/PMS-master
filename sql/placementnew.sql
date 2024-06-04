@@ -142,12 +142,13 @@ INSERT INTO `feed` (`id`, `user`, `message`, `date`, `time`) VALUES
 --
 
 CREATE TABLE `join_course` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `course_name` varchar(255) NOT NULL,
   `enrollment_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `student_name` varchar(100) NOT NULL,
   `usn` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `join_course`
@@ -214,6 +215,13 @@ CREATE TABLE `training` (
 -- Indexes for dumped tables
 --
 
+INSERT INTO training (course, lecturer, description, start_date, end_date, duration) VALUES
+('Data Structures', 'Dr. Smith', 'In-depth study of data structures.', '2024-06-10', '2024-07-10', 30),
+('Algorithms', 'Dr. Johnson', 'Algorithm design and analysis.', '2024-06-15', '2024-07-15', 30),
+('Operating Systems', 'Prof. Brown', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30),
+('Database Management', 'Dr. White', 'Database systems and SQL.', '2024-06-25', '2024-07-25', 30),
+('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30),
+('dbms', 'a', 'abc', '2024-06-20', '2024-07-06', 30);
 --
 -- Indexes for table `adminlogin`
 --
