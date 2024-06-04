@@ -221,7 +221,7 @@ INSERT INTO training (course, lecturer, description, start_date, end_date, durat
 ('Operating Systems', 'Prof. Brown', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30),
 ('Database Management', 'Dr. White', 'Database systems and SQL.', '2024-06-25', '2024-07-25', 30),
 ('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30),
-('dbms', 'a', 'abc', '2024-06-20', '2024-07-06', 30);
+('dbms', 'a', 'abc', '2024-06-20', '2024-07-06',30);
 --
 -- Indexes for table `adminlogin`
 --

@@ -110,17 +110,18 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
             <table class="table table-hover table-borderless table-light">
                 <thead>
                     <tr>
-                        <th scope="col">USN</th>
                         <th scope="col">Company Name</th>
-                        <th scope="col">Student Name</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                     
+
+
                     if (isset($_SESSION['username'])) {
                         $user = $_SESSION['username'];
-                        $sql = "SELECT usn, company, student_name, status FROM applied WHERE student_name=? AND status='Selected';";
+                        $sql = "SELECT company, student_name, status FROM applied WHERE student_name=? AND status='Selected';";
                         $stmt = mysqli_stmt_init($conn);
                         if (mysqli_stmt_prepare($stmt, $sql)) {
                             mysqli_stmt_bind_param($stmt, "s", $user);
@@ -133,9 +134,7 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                                 if ($rowCount > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         echo '<tr>';
-                                        echo '<td>' . htmlspecialchars($row['usn']) . '</td>';
                                         echo '<td>' . htmlspecialchars($row['company']) . '</td>';
-                                        echo '<td>' . htmlspecialchars($row['student_name']) . '</td>';
                                         echo '<td>' . htmlspecialchars($row['status']) . '</td>';
                                         echo '</tr>';
                                     }
