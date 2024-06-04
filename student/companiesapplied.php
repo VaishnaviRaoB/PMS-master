@@ -138,7 +138,7 @@ delete_application($conn);
     <h1 class="form-row justify-content-center mt-4">Applied Companies</h1>
     <div class="search-container mt-4">
         <form method="GET">
-            <input type="text" name="search" placeholder="Search Here">
+            <input type="text" name="search" placeholder="Search Here" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
             <button type="submit">Search</button>
         </form>
     </div>
@@ -148,8 +148,6 @@ delete_application($conn);
                 <thead>
                     <tr>
                         <th scope="col">Company Name</th>
-                        <th scope="col">Student Name</th>
-                        <th scope="col">USN</th>
                         <th scope="col">Status</th>
                         <th scope="col">Change Status</th>
                         <th scope="col">Action</th>
@@ -158,10 +156,12 @@ delete_application($conn);
                 <tbody>
                     <?php
                     $user = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+                    $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
+
                     if (!empty($user)) {
-                        $sql = "SELECT * FROM applied WHERE student_name=?";
+                        $sql = "SELECT * FROM applied WHERE student_name=? AND company LIKE ?";
                         $stmt = mysqli_prepare($conn, $sql);
-                        mysqli_stmt_bind_param($stmt, 's', $user);
+                        mysqli_stmt_bind_param($stmt, 'ss', $user, $search);
                         mysqli_stmt_execute($stmt);
                         $result = mysqli_stmt_get_result($stmt);
 
@@ -169,8 +169,6 @@ delete_application($conn);
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo '<tr>';
                                 echo '<td>' . htmlspecialchars($row['company']) . '</td>';
-                                echo '<td>' . htmlspecialchars($row['student_name']) . '</td>';
-                                echo '<td>' . htmlspecialchars($row['usn']) . '</td>';
                                 echo '<td>' . htmlspecialchars($row['status']) . '</td>';
                                 echo '<td>';
                                 echo '<form method="POST" action="view_applications.php">';
@@ -193,11 +191,11 @@ delete_application($conn);
                                 echo '</tr>';
                             }
                         } else {
-                            echo '<tr><td colspan="5">No records found</td></tr>';
+                            echo '<tr><td colspan="4">No records found</td></tr>';
                         }
                         mysqli_stmt_close($stmt);
                     } else {
-                        echo '<tr><td colspan="5">Session data not available</td></tr>';
+                        echo '<tr><td colspan="4">Session data not available</td></tr>';
                     }
                     mysqli_close($conn);
                     ?>
