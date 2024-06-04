@@ -101,7 +101,7 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
     <h1 class="form-row justify-content-center mt-4">Selected Companies</h1>
     <div class="search-container mt-4">
         <form method="GET">
-            <input type="text" name="search" placeholder="Search Here">
+            <input type="text" name="search" placeholder="Search Here" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
             <button type="submit">Search</button>
         </form>
     </div>
@@ -116,19 +116,17 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                 </thead>
                 <tbody>
                     <?php
-                     
-
-
                     if (isset($_SESSION['username'])) {
                         $user = $_SESSION['username'];
-                        $sql = "SELECT company, student_name, status FROM applied WHERE student_name=? AND status='Selected';";
+                        $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
+                        $sql = "SELECT company, student_name, status FROM applied WHERE student_name=? AND status='Selected' AND company LIKE ?;";
                         $stmt = mysqli_stmt_init($conn);
                         if (mysqli_stmt_prepare($stmt, $sql)) {
-                            mysqli_stmt_bind_param($stmt, "s", $user);
+                            mysqli_stmt_bind_param($stmt, "ss", $user, $search);
                             mysqli_stmt_execute($stmt);
                             $result = mysqli_stmt_get_result($stmt);
                             if (!$result) {
-                                echo '<tr><td colspan="4" class="no-trainings">Error in fetching results: ' . mysqli_error($conn) . '</td></tr>';
+                                echo '<tr><td colspan="2" class="no-trainings">Error in fetching results: ' . mysqli_error($conn) . '</td></tr>';
                             } else {
                                 $rowCount = mysqli_num_rows($result);
                                 if ($rowCount > 0) {
@@ -139,15 +137,15 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                                         echo '</tr>';
                                     }
                                 } else {
-                                    echo '<tr><td colspan="4" class="no-trainings">You are not selected for any company</td></tr>';
+                                    echo '<tr><td colspan="2" class="no-trainings">No matching companies found</td></tr>';
                                 }
                             }
                             mysqli_stmt_close($stmt);
                         } else {
-                            echo '<tr><td colspan="4" class="no-trainings">Error in preparing statement: ' . mysqli_error($conn) . '</td></tr>';
+                            echo '<tr><td colspan="2" class="no-trainings">Error in preparing statement: ' . mysqli_error($conn) . '</td></tr>';
                         }
                     } else {
-                        echo '<tr><td colspan="4" class="no-trainings">Please log in to view your selected companies</td></tr>';
+                        echo '<tr><td colspan="2" class="no-trainings">Please log in to view your selected companies</td></tr>';
                     }
                     ?>
                 </tbody>
