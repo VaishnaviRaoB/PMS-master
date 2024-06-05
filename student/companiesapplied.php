@@ -150,7 +150,6 @@ delete_application($conn);
                         <th scope="col">Company Name</th>
                         <th scope="col">Status</th>
                         <th scope="col">Change Status</th>
-                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -171,7 +170,7 @@ delete_application($conn);
                                 echo '<td>' . htmlspecialchars($row['company']) . '</td>';
                                 echo '<td>' . htmlspecialchars($row['status']) . '</td>';
                                 echo '<td>';
-                                echo '<form method="POST" action="view_applications.php">';
+                                echo '<form method="POST" action="companiesapplied.php">';
                                 echo '<input type="hidden" name="usn" value="' . htmlspecialchars($row['usn']) . '">';
                                 echo '<input type="hidden" name="company" value="' . htmlspecialchars($row['company']) . '">';
                                 echo '<select name="status" onchange="this.form.submit()">';
@@ -183,19 +182,14 @@ delete_application($conn);
                                 echo '<input type="hidden" name="update_status" value="1">';
                                 echo '</form>';
                                 echo '</td>';
-                                if ($row['status'] == 'Selected') {
-                                    echo '<td>Selected</td>';
-                                } else {
-                                    echo '<td><a href="view_applications.php?delete_company=' . urlencode($row['company']) . '">Delete</a></td>';
-                                }
                                 echo '</tr>';
                             }
                         } else {
-                            echo '<tr><td colspan="4">No records found</td></tr>';
+                            echo '<tr><td colspan="3">No records found</td></tr>';
                         }
                         mysqli_stmt_close($stmt);
                     } else {
-                        echo '<tr><td colspan="4">Session data not available</td></tr>';
+                        echo '<tr><td colspan="3">Session data not available</td></tr>';
                     }
                     mysqli_close($conn);
                     ?>

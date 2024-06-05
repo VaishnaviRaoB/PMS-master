@@ -68,14 +68,14 @@ CREATE TABLE `applied` (
 
 INSERT INTO `applied` (`id`, `usn`, `student_name`, `company`, `status`, `chances`) VALUES
 (1, 'USN001', 'Alice', 'General Electric', 'Selected', 'High'),
-(2, 'USN002', 'Bob', 'Tata Consultancy Services (TCS)', 'Rejected', 'Low'),
-(3, 'USN003', 'Charlie', 'Wipro', 'Attended', 'High'),
+(2, 'USN002', 'Bob', 'Infosys', 'Rejected', 'Low'), -- Changed company to 'Infosys'
+(3, 'USN003', 'Charlie', 'Infosys', 'Attended', 'High'), -- Changed company to 'Infosys'
 (4, 'USN004', 'David', 'General Electric', 'Selected', 'High'),
 (5, 'USN005', 'Eve', 'Infosys', 'Attended', 'Low'),
-(6, 'USN001', 'Alice', 'Siemens AG', 'Selected', 'Medium'),
+(6, 'USN001', 'Alice', 'Verizon Communications', 'Selected', 'Medium'), -- Changed company to 'Verizon Communications'
 (7, 'USN002', 'Bob', 'Infosys', 'Unknown', NULL),
-(8, 'USN004', 'David', 'Siemens AG', 'Rejected', 'Medium'),
-(9, 'USN005', 'Eve', 'Concentrix', 'Applied', 'High');
+(8, 'USN004', 'David', 'Verizon Communications', 'Rejected', 'Medium'), -- Changed company to 'Verizon Communications'
+(9, 'USN005', 'Eve', 'Marriott International', 'Applied', 'High'); -- Changed company to 'Marriott International'
 
 -- --------------------------------------------------------
 

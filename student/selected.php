@@ -64,7 +64,7 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
             border-left: 1px solid #dee2e6; /* Add vertical line before the first column */
         }
         .table thead th:last-child {
-            border-right:1px solid #dee2e6 ; /* Remove vertical line after the last column */
+            border-right: 1px solid #dee2e6; /* Remove vertical line after the last column */
         }
         .table td, .table th {
             vertical-align: middle;
@@ -111,6 +111,7 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                 <thead>
                     <tr>
                         <th scope="col">Company Name</th>
+                        <th scope="col">Address</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,7 +119,10 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                     if (isset($_SESSION['username'])) {
                         $user = $_SESSION['username'];
                         $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
-                        $sql = "SELECT company, student_name, status FROM applied WHERE student_name=? AND status='Selected' AND company LIKE ?;";
+                        $sql = "SELECT applied.company, company.address 
+                                FROM applied 
+                                JOIN company ON applied.company = company.name 
+                                WHERE applied.student_name=? AND applied.status='Selected' AND applied.company LIKE ?;";
                         $stmt = mysqli_stmt_init($conn);
                         if (mysqli_stmt_prepare($stmt, $sql)) {
                             mysqli_stmt_bind_param($stmt, "ss", $user, $search);
@@ -132,6 +136,7 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         echo '<tr>';
                                         echo '<td>' . htmlspecialchars($row['company']) . '</td>';
+                                        echo '<td>' . htmlspecialchars($row['address']) . '</td>';
                                         echo '</tr>';
                                     }
                                 } else {
