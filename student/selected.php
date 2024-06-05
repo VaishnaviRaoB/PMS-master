@@ -111,7 +111,6 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                 <thead>
                     <tr>
                         <th scope="col">Company Name</th>
-                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,7 +132,6 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         echo '<tr>';
                                         echo '<td>' . htmlspecialchars($row['company']) . '</td>';
-                                        echo '<td>' . htmlspecialchars($row['status']) . '</td>';
                                         echo '</tr>';
                                     }
                                 } else {
