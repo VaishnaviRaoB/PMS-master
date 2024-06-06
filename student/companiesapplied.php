@@ -65,13 +65,19 @@ delete_application($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Companies Applied</title>
     <link rel="stylesheet" type="text/css" href="css/addcomp.css">
     <!-- Include necessary scripts for Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <title>Applied Companies</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Additional CSS styles -->
+
     <style>
+        /* Your custom CSS styles */
         .search-container {
             display: flex;
             justify-content: center;
@@ -136,6 +142,7 @@ delete_application($conn);
 </head>
 <body>
 
+
 <div class="container" style="z-index: 2;">
     <h1 class="form-row justify-content-center mt-4">Applied Companies</h1>
     <div class="search-container mt-4">
@@ -156,6 +163,7 @@ delete_application($conn);
                 </thead>
                 <tbody>
                     <?php
+                    // Your PHP code for displaying applied companies
                     $user = isset($_SESSION['username']) ? $_SESSION['username'] : '';
                     $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
 
@@ -201,10 +209,10 @@ delete_application($conn);
     </div>
 </div>
 
-<?php include_once 'includes/footer.php'; ?>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $("#home").removeClass("active");
