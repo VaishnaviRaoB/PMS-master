@@ -67,13 +67,7 @@ delete_application($conn);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Companies Applied</title>
-    <link rel="stylesheet" type="text/css" href="css/addcomp.css">
-    <!-- Include necessary scripts for Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <title>Applied Companies</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/reg.css">
     <!-- Additional CSS styles -->
 
     <style>
