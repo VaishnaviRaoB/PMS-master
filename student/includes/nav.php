@@ -12,15 +12,16 @@
       <li class="nav-item active" id="home">
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item" id="viewcomp">
+        <a class="nav-link" href="viewcompanies.1.php">View Companies</a>
+      </li>
       <li class="nav-item" id="apply">
         <a class="nav-link" href="apply.php">Apply Companies</a>
       </li>
       <li class="nav-item" id="view">
         <a class="nav-link" href="companiesapplied.php">View Applications</a>
       </li>
-      <li class="nav-item" id="viewcomp">
-        <a class="nav-link" href="viewcompanies.1.php">View Companies</a>
-      </li>
+     
       <li class="nav-item" id="select">
         <a class="nav-link" href="selected.php">Selected Companies</a>
       </li>
