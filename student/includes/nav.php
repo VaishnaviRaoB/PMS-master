@@ -13,7 +13,7 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item" id="apply">
-        <a class="nav-link" href="viewapply.php">Apply</a>
+        <a class="nav-link" href="apply.php">Apply Companies</a>
       </li>
       <li class="nav-item" id="view">
         <a class="nav-link" href="companiesapplied.php">View Applications</a>

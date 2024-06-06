@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once 'includes/head.php';
 include_once 'includes/nav.php';
 
@@ -6,7 +6,9 @@ include_once 'includes/nav.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include_once 'includes/db.inc.php'; // Make sure this file includes your database connection code
+
+include_once '../includes/db.inc.php';  // Include your database connection code here
+
 ?>
 
 <!DOCTYPE html>
@@ -15,10 +17,10 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Selected Companies</title>
-    <link rel="stylesheet" type="text/css" href="css/reg.css"> <!-- Adjust the CSS link accordingly -->
-    <!-- Include any additional styles or scripts here -->
+    <title>Companies Selected</title>
+    <link rel="stylesheet" type="text/css" href="css/reg.css">
     <style>
+        /* Your custom styles here */
         .search-container {
             display: flex;
             justify-content: center;
@@ -97,6 +99,8 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
 </head>
 <body>
 
+<?php include_once 'includes/nav.php'; ?>
+
 <div class="container" style="z-index: 2;">
     <h1 class="form-row justify-content-center mt-4">Selected Companies</h1>
     <div class="search-container mt-4">
@@ -116,46 +120,51 @@ include_once 'includes/db.inc.php'; // Make sure this file includes your databas
                 </thead>
                 <tbody>
                     <?php
-                    if (isset($_SESSION['username'])) {
-                        $user = $_SESSION['username'];
-                        $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
-                        $sql = "SELECT applied.company, company.address 
-                                FROM applied 
-                                JOIN company ON applied.company = company.name 
-                                WHERE applied.student_name=? AND applied.status='Selected' AND applied.company LIKE ?;";
-                        $stmt = mysqli_stmt_init($conn);
-                        if (mysqli_stmt_prepare($stmt, $sql)) {
-                            mysqli_stmt_bind_param($stmt, "ss", $user, $search);
-                            mysqli_stmt_execute($stmt);
-                            $result = mysqli_stmt_get_result($stmt);
-                            if (!$result) {
-                                echo '<tr><td colspan="2" class="no-trainings">Error in fetching results: ' . mysqli_error($conn) . '</td></tr>';
-                            } else {
-                                $rowCount = mysqli_num_rows($result);
-                                if ($rowCount > 0) {
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo '<tr>';
-                                        echo '<td>' . htmlspecialchars($row['company']) . '</td>';
-                                        echo '<td>' . htmlspecialchars($row['address']) . '</td>';
-                                        echo '</tr>';
-                                    }
+                    // Debugging: Check session username
+                    
+                    
+                   
+                        if (isset($_SESSION['username'])) {
+                            $user = $_SESSION['username'];
+                            $search = isset($_GET['search']) ? '%' . $_GET['search'] . '%' : '%';
+                            $sql = "SELECT applied.company, company.address 
+                                    FROM applied 
+                                    JOIN company ON applied.company = company.name 
+                                    WHERE applied.student_name=? AND applied.status='Selected' AND applied.company LIKE ?;";
+                            $stmt = mysqli_stmt_init($conn);
+                            if (mysqli_stmt_prepare($stmt, $sql)) {
+                                mysqli_stmt_bind_param($stmt, "ss", $user, $search);
+                                mysqli_stmt_execute($stmt);
+                                $result = mysqli_stmt_get_result($stmt);
+                                if (!$result) {
+                                    echo '<tr><td colspan="2" class="no-trainings">Error in fetching results: ' . mysqli_error($conn) . '</td></tr>';
                                 } else {
-                                    echo '<tr><td colspan="2" class="no-trainings">No matching companies found</td></tr>';
+                                    $rowCount = mysqli_num_rows($result);
+                                    if ($rowCount > 0) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo '<tr>';
+                                            echo '<td>' . htmlspecialchars($row['company']) . '</td>';
+                                            echo '<td>' . htmlspecialchars($row['address']) . '</td>';
+                                            echo '</tr>';
+                                        }
+                                    } else {
+                                        echo '<tr><td colspan="2" class="no-trainings">No matching companies found</td></tr>';
+                                    }
                                 }
+                                mysqli_stmt_close($stmt);
+                            } else {
+                                echo '<tr><td colspan="2" class="no-trainings">Error in preparing statement: ' . mysqli_error($conn) . '</td></tr>';
                             }
-                            mysqli_stmt_close($stmt);
                         } else {
-                            echo '<tr><td colspan="2" class="no-trainings">Error in preparing statement: ' . mysqli_error($conn) . '</td></tr>';
+                            echo '<tr><td colspan="2" class="no-trainings">Please log in to view your selected companies</td></tr>';
                         }
-                    } else {
-                        echo '<tr><td colspan="2" class="no-trainings">Please log in to view your selected companies</td></tr>';
-                    }
                     ?>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
 <?php include_once 'includes/footer.php'; ?>
 
 <!-- Include any additional scripts here -->

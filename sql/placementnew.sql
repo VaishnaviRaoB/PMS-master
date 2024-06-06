@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2024 at 09:35 PM
+-- Generation Time: Jun 06, 2024 at 03:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,14 +68,16 @@ CREATE TABLE `applied` (
 
 INSERT INTO `applied` (`id`, `usn`, `student_name`, `company`, `status`, `chances`) VALUES
 (1, 'USN001', 'Alice', 'General Electric', 'Selected', 'High'),
-(2, 'USN002', 'Bob', 'Infosys', 'Rejected', 'Low'), -- Changed company to 'Infosys'
-(3, 'USN003', 'Charlie', 'Infosys', 'Attended', 'High'), -- Changed company to 'Infosys'
+(2, 'USN002', 'Bob', 'Infosys', 'Rejected', 'Low'),
+(3, 'USN003', 'Charlie', 'Infosys', 'Attended', 'High'),
 (4, 'USN004', 'David', 'General Electric', 'Selected', 'High'),
 (5, 'USN005', 'Eve', 'Infosys', 'Attended', 'Low'),
-(6, 'USN001', 'Alice', 'Verizon Communications', 'Selected', 'Medium'), -- Changed company to 'Verizon Communications'
+(6, 'USN001', 'Alice', 'Verizon Communications', 'Selected', 'Medium'),
 (7, 'USN002', 'Bob', 'Infosys', 'Unknown', NULL),
-(8, 'USN004', 'David', 'Verizon Communications', 'Rejected', 'Medium'), -- Changed company to 'Verizon Communications'
-(9, 'USN005', 'Eve', 'Marriott International', 'Applied', 'High'); -- Changed company to 'Marriott International'
+(8, 'USN004', 'David', 'Verizon Communications', 'Rejected', 'Medium'),
+(9, 'USN005', 'Eve', 'Marriott International', 'Applied', 'High'),
+(10, 'USN001', 'Alice', 'Johnson & Johnson', 'Applied', NULL),
+(11, 'USN001', 'Alice', 'Harvard University', 'Applied', NULL);
 
 -- --------------------------------------------------------
 
@@ -142,13 +144,12 @@ INSERT INTO `feed` (`id`, `user`, `message`, `date`, `time`) VALUES
 --
 
 CREATE TABLE `join_course` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` int(11) NOT NULL,
   `course_name` varchar(255) NOT NULL,
   `enrollment_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `student_name` varchar(100) NOT NULL,
   `usn` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 --
 -- Dumping data for table `join_course`
@@ -159,7 +160,9 @@ INSERT INTO `join_course` (`id`, `course_name`, `enrollment_date`, `student_name
 (2, 'Algorithms', '2024-05-31 22:00:00', 'Bob Builder', 'USN002'),
 (3, 'Operating Systems', '2024-05-31 22:00:00', 'Charlie Chocolate', 'USN003'),
 (4, 'Database Management', '2024-05-31 22:00:00', 'David Copperfield', 'USN004'),
-(5, 'Machine Learning', '2024-05-31 22:00:00', 'Eve Adams', 'USN005');
+(5, 'Machine Learning', '2024-05-31 22:00:00', 'Eve Adams', 'USN005'),
+(6, 'Operating Systems', '2024-06-06 11:31:14', 'Alice', 'USN001'),
+(7, 'Algorithms', '2024-06-06 11:31:27', 'Alice', 'USN001');
 
 -- --------------------------------------------------------
 
@@ -212,16 +215,21 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `training`
 --
 
-INSERT INTO training (course, lecturer, description, start_date, end_date, duration) VALUES
+INSERT INTO `training` (`course`, `lecturer`, `description`, `start_date`, `end_date`, `duration`) VALUES
 ('Data Structures', 'Dr. Smith', 'In-depth study of data structures.', '2024-06-10', '2024-07-10', 30),
 ('Algorithms', 'Dr. Johnson', 'Algorithm design and analysis.', '2024-06-15', '2024-07-15', 30),
 ('Operating Systems', 'Prof. Brown', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30),
 ('Database Management', 'Dr. White', 'Database systems and SQL.', '2024-06-25', '2024-07-25', 30),
 ('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30),
-('dbms', 'a', 'abc', '2024-06-20', '2024-07-06',30);
+('dbms', 'a', 'abc', '2024-06-20', '2024-07-06', 30);
+
+--
+-- Indexes for dumped tables
+--
+
 --
 -- Indexes for table `adminlogin`
 --
@@ -254,18 +262,6 @@ ALTER TABLE `join_course`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `studentlogin`
---
-ALTER TABLE `studentlogin`
-  ADD PRIMARY KEY (`usn`);
-
---
--- Indexes for table `training`
---
-ALTER TABLE `training`
-  ADD PRIMARY KEY (`course`,`start_date`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -273,13 +269,13 @@ ALTER TABLE `training`
 -- AUTO_INCREMENT for table `applied`
 --
 ALTER TABLE `applied`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `join_course`
 --
 ALTER TABLE `join_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
