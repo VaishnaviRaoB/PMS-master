@@ -48,7 +48,7 @@ function delete_application($conn) {
                 header("Location: view_applications.php?error=Failed to delete application");
                 exit();
             }
-            mysqli_stmt_close($stmt);
+           
         } else {
             header("Location: view_applications.php?error=Session data not available");
             exit();

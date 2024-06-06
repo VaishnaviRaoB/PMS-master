@@ -88,8 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-<div class="container">
-    <h2>Apply for Company</h2>
+<div class="container" style="z-index: 2;">
+    <h1 class="form-row justify-content-center mt-4">Apply to Companies</h1>
     <form id="applicationForm" method="POST">
         <div class="form-group">
             <label for="usn">USN:</label>
