@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    
-
+<head>
     <?php include_once 'includes/head.php'; ?>
     <?php include_once 'includes/footer.php'; ?> 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -12,51 +10,49 @@
     <link rel="stylesheet" type="text/css" href="css/addcomp.css">
     <link rel="stylesheet" type="text/css" href="css/change.css">
     <title>Change Password</title>
-  </head>
-  <body>
+</head>
+<body>
     <div>
-      <img id="img2" src="../images/pass.png" width="550px" style="position: absolute; position: fixed; z-index: 1; margin-left: 50%;
-       margin-top: 20vh;">
+        <img id="img2" src="../images/pass.png" width="550px" style="position: absolute; position: fixed; z-index: 1; margin-left: 50%; margin-top: 20vh;">
     </div>
     <img src="../images/aboutbg.png" id="img1" style="position: fixed;">
     <?php include_once 'includes/nav1.php'; ?>
     <div class="content">
         <br> <br> 
-    <h1 align="center" style="margin-left: 50px;">Change Password</h1> <br>
-    <br><br>
-    <div class="row justify-content-center">
-    <form action="php/changepass.inc.php" method="POST">
-
-    <?php
-
-    include_once '../includes/db.inc.php';
-
-      ?>
-    <div class="center">
-      <div class="form-group ">
-        <label>Enter Password</label>
-        <input type="password" class="form-control" id="id" name="pwd1">
+        <h1 align="center" style="margin-left: 50px;">Change Password</h1> <br>
+        <br><br>
+        <div class="row justify-content-center">
+            <?php
+                if (isset($_GET['error'])) {
+                    if ($_GET['error'] == "passwordsnotmatch") {
+                        echo '<div class="alert alert-danger" role="alert">Passwords didn\'t match!</div>';
+                    } else if ($_GET['error'] == "sqlerror") {
+                        echo '<div class="alert alert-danger" role="alert">An error occurred while updating the password. Please try again later.</div>';
+                    }
+                } else if (isset($_GET['change']) && $_GET['change'] == "success") {
+                    echo '<div class="alert alert-success" role="alert">Password has been changed successfully!</div>';
+                }
+            ?>
+            <form action="php/changepass.inc.php" method="POST">
+                <div class="center">
+                    <div class="form-group">
+                        <label>Enter Password</label>
+                        <input type="password" class="form-control" name="pwd1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-control" name="pwd2" required>
+                    </div>
+                    <button type="submit" class="btn" name="change" style="color: white; font-weight: bold; background: linear-gradient(to left, #4181ED, #3F4261);">Change Password</button>
+                </div>
+            </form>
         </div>
-      <div class="form-group ">
-        <label>Confirm Password</label>
-        <input type="password" class="form-control" id="itemname" name="pwd2">
-        </div>
-
-
-      <button type="submit" class="btn" name="change" style=" color: white;
-									font-weight: bold; background: linear-gradient(to left, #4181ED, #3F4261);">Change Password</button>
     </div>
-  </form>
-</div>
-</div>
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <script>
-      $(document).ready(function() {
-         $("#add").removeClass("active");
-        $("#change").addClass("active");
-        
-      });
+        $(document).ready(function() {
+            $("#add").removeClass("active");
+            $("#change").addClass("active");
+        });
     </script>
-  </body>
+</body>
 </html>
-

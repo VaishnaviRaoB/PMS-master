@@ -11,11 +11,11 @@ if (isset($_POST['signup'])) {
     $pwd2 = $_POST['pwd2'];
 
     if ($pwd1 == $pwd2) {
-        // Hash the password securely (use password_hash)
-        $hashedPwd = password_hash($pwd1, PASSWORD_DEFAULT);
+        // Store the password as plain text (NOT RECOMMENDED)
+        $plainPwd = $pwd1;
 
         // Insert the data into the 'adminlogin' table
-        $sql = "INSERT INTO adminlogin (uname, pwd, fname, lname, email, phone) VALUES ('$uname', '$hashedPwd', '$fname', '$lname', '$email', '$phone')";
+        $sql = "INSERT INTO adminlogin (uname, pwd, fname, lname, email, phone) VALUES ('$uname', '$plainPwd', '$fname', '$lname', '$email', '$phone')";
         mysqli_query($conn, $sql);
 
         // Redirect to the success page
