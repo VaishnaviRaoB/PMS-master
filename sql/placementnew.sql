@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2024 at 03:55 PM
+-- Generation Time: Jun 07, 2024 at 08:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -76,8 +76,11 @@ INSERT INTO `applied` (`id`, `usn`, `student_name`, `company`, `status`, `chance
 (7, 'USN002', 'Bob', 'Infosys', 'Unknown', NULL),
 (8, 'USN004', 'David', 'Verizon Communications', 'Rejected', 'Medium'),
 (9, 'USN005', 'Eve', 'Marriott International', 'Applied', 'High'),
-(10, 'USN001', 'Alice', 'Johnson & Johnson', 'Applied', NULL),
-(11, 'USN001', 'Alice', 'Harvard University', 'Applied', NULL);
+(10, 'USN001', 'Alice', 'Johnson & Johnson', 'Selected', NULL),
+(11, 'USN001', 'Alice', 'Harvard University', 'Applied', NULL),
+(12, 'USN001', 'Alice', 'CBRE Group', 'Applied', NULL),
+(13, 'USN001', 'Alice', 'JPMorgan Chase', 'Applied', NULL),
+(14, 'USN001', 'Alice', 'Marriott International', 'Applied', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,16 +104,15 @@ CREATE TABLE `company` (
 
 INSERT INTO `company` (`name`, `type`, `address`, `number`, `website`, `status`, `minperc`) VALUES
 ('Accenture', 'BPO', 'Dublin, Ireland', '1234567890', 'https://www.accenture.com', 'Active', '60'),
-('CBRE Group', 'Real Estate', 'Los Angeles, USA', '2136133333', 'https://www.cbre.com', 'Active', '70'),
-('General Electric', 'Manufacturing', 'Boston, USA', '6174433000', 'https://www.ge.com', 'Active', '70'),
-('Harvard University', 'Education', 'Cambridge, USA', '6174951000', 'https://www.harvard.edu', 'Active', '90'),
+('CBRE Group', 'Real Estate', 'Los Angeles, USA', '2136133435', 'https://www.cbre.com', 'Active', '70'),
+('General Electric', 'Manufacturing', 'Boston, USA', '6174433003', 'https://www.ge.com', 'Active', '70'),
 ('Infosys', 'IT', 'Bangalore, India', '8088888888', 'https://www.infosys.com', 'Active', '60'),
 ('Johnson & Johnson', 'Healthcare', 'New Brunswick, USA', '7325240400', 'https://www.jnj.com', 'Active', '75'),
-('JPMorgan Chase', 'Finance', 'New York, USA', '2122706000', 'https://www.jpmorganchase.com', 'Active', '80'),
-('Marriott International', 'Hospitality', 'Bethesda, USA', '3013803000', 'https://www.marriott.com', 'Active', '70'),
-('McKinsey & Company', 'Consulting', 'New York, USA', '2124467000', 'https://www.mckinsey.com', 'Active', '75'),
-('Verizon Communications', 'Telecommunications', 'New York, USA', '2123951000', 'https://www.verizon.com', 'Active', '70'),
-('Walmart', 'Retail', 'Bentonville, USA', '4792734000', 'https://www.walmart.com', 'Active', '80');
+('JPMorgan Chase', 'Finance', 'New York, USA', '2122706002', 'https://www.jpmorganchase.com', 'Active', '80'),
+('Marriott International', 'Hospitality', 'Bethesda, USA', '3013803002', 'https://www.marriott.com', 'Active', '70'),
+('McKinsey &amp; Company', 'Consulting', 'New York, USA', '2124467002', 'https://www.mckinsey.com', 'Active', '75'),
+('Verizon Communications', 'Telecommunications', 'New York, USA', '2123951003', 'https://www.verizon.com', 'Active', '70'),
+('Walmart', 'Retail', 'Bentonville, USA', '4792734001', 'https://www.walmart.com', 'Active', '80');
 
 -- --------------------------------------------------------
 
@@ -119,7 +121,6 @@ INSERT INTO `company` (`name`, `type`, `address`, `number`, `website`, `status`,
 --
 
 CREATE TABLE `feed` (
-  `id` int(255) NOT NULL,
   `user` varchar(100) DEFAULT NULL,
   `message` text DEFAULT NULL,
   `date` date DEFAULT NULL,
@@ -130,12 +131,17 @@ CREATE TABLE `feed` (
 -- Dumping data for table `feed`
 --
 
-INSERT INTO `feed` (`id`, `user`, `message`, `date`, `time`) VALUES
-(1, 'admin1', 'Welcome to the new placement portal!', '2024-06-01', '09:00:00'),
-(2, 'admin2', 'New companies have been added.', '2024-06-02', '10:00:00'),
-(3, 'admin3', 'Training sessions will start next week.', '2024-06-03', '11:00:00'),
-(4, 'admin4', 'Placement results will be announced soon.', '2024-06-04', '12:00:00'),
-(5, 'admin5', 'Feedback sessions are now open.', '2024-06-05', '13:00:00');
+INSERT INTO `feed` (`user`, `message`, `date`, `time`) VALUES
+('admin1', 'hello everyone\r\n', '2024-06-07', '23:52:54'),
+('admin1', 'Welcome to the new placement portal!', '2024-06-01', '09:00:00'),
+('admin2', 'New companies have been added.', '2024-06-02', '10:00:00'),
+('admin3', 'Training sessions will start next week.', '2024-06-03', '11:00:00'),
+('admin4', 'Placement results will be announced soon.', '2024-06-04', '12:00:00'),
+('admin5', 'Feedback sessions are now open.', '2024-06-05', '13:00:00'),
+('admin1', 'how are you\r\n', '2024-06-08', '00:02:07'),
+('admin1', 'hellow everyone\r\n', '2024-06-08', '00:02:22'),
+('admin1', 'how are you\r\n', '2024-06-08', '00:02:29'),
+('admin1', 'stay happy\r\n', '2024-06-08', '00:02:38');
 
 -- --------------------------------------------------------
 
@@ -219,12 +225,11 @@ CREATE TABLE `training` (
 --
 
 INSERT INTO `training` (`course`, `lecturer`, `description`, `start_date`, `end_date`, `duration`) VALUES
-('Data Structures', 'Dr. Smith', 'In-depth study of data structures.', '2024-06-10', '2024-07-10', 30),
+('Data Structures', 'Dr. Smiths', 'In-depth study of data structures.', '2024-06-10', '2024-07-10', 30),
 ('Algorithms', 'Dr. Johnson', 'Algorithm design and analysis.', '2024-06-15', '2024-07-15', 30),
-('Operating Systems', 'Prof. Brown', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30),
+('Operating Systems', 'Prof. Browns', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30),
 ('Database Management', 'Dr. White', 'Database systems and SQL.', '2024-06-25', '2024-07-25', 30),
-('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30),
-('dbms', 'a', 'abc', '2024-06-20', '2024-07-06', 30);
+('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30);
 
 --
 -- Indexes for dumped tables
@@ -250,12 +255,6 @@ ALTER TABLE `company`
   ADD PRIMARY KEY (`name`);
 
 --
--- Indexes for table `feed`
---
-ALTER TABLE `feed`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `join_course`
 --
 ALTER TABLE `join_course`
@@ -269,7 +268,7 @@ ALTER TABLE `join_course`
 -- AUTO_INCREMENT for table `applied`
 --
 ALTER TABLE `applied`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `join_course`
