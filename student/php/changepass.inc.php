@@ -15,12 +15,12 @@ if (isset($_POST['change'])) {
                 window.location.replace('../changepass.php');
               </script>";
     } else {
-        // Hash the new password
-        $hashedPwd = password_hash($pwd1, PASSWORD_DEFAULT);
+        // Store the plain password (NOT RECOMMENDED)
+        $plainPwd = $pwd1;
 
         // Use prepared statements to prevent SQL injection
         $stmt = $conn->prepare("UPDATE studentlogin SET pwd=? WHERE fname=?");
-        $stmt->bind_param("ss", $hashedPwd, $user);
+        $stmt->bind_param("ss", $plainPwd, $user);
 
         if ($stmt->execute()) {
             echo "<script>
