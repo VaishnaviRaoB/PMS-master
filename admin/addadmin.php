@@ -22,10 +22,7 @@
 		    <div class="row justify-content-center align-items-baseline">
 		      <div class="center one">
 		        <div class="form-row">
-		        	<div class="form-group col-md-6">
-			          <label for="cid">Admin ID</label>
-			          <input type="text" class="form-control" id="cid" name="cid" placeholder="Student ID" disabled>
-			        </div>
+		        	
 			        <div class="form-group col-md-6">
 			          <label for="cname">Username</label>
 			          <input type="text" class="form-control" id="cname" name="username" placeholder="Username" required>

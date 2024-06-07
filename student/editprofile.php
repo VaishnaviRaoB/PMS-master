@@ -66,6 +66,8 @@ if (!empty($user)) {
                         <div class="form-group col-md-6">
                             <label for="usn">Student ID</label>
                             <input type="text" class="form-control" id="usn" name="usn" value="<?php echo $row['usn']; ?>" readonly>
+                            <label for="cid">Student ID</label>
+                            <input type="text" class="form-control" id="usn" name="usn" value="<?php echo $row['usn']; ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="uname">Student Username</label>
