@@ -37,11 +37,11 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="end_date">End Date</label>
-                        <input type="date" class="form-control" id="end_date" name="end_date">
+                        <input type="date" class="form-control" id="end_date" name="end_date" onchange="calculateDuration()">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="duration">Duration (in days)</label>
-                        <input type="number" class="form-control" id="duration" name="duration" placeholder="Duration in days">
+                        <input type="text" class="form-control" id="duration" name="duration" placeholder="Duration in days" readonly>
                     </div>
                     <div class="form-group col-md-12">
                         <button type="submit" class="btn" name="add" style="width: 150px; color: white; font-weight: bold; background: linear-gradient(to left, #6C63FF, #3F3D56);">Add Course</button>
@@ -52,11 +52,12 @@
     </div>
     <?php include_once 'includes/footer.php' ?>
     <script>
-        var a = document.getElementById("telephone").value;
-        function f() {
-            if (a.length > 10) {
-                alert("Numbers must be equal to 10 digits");
-            }
+        function calculateDuration() {
+            var startDate = new Date(document.getElementById("start_date").value);
+            var endDate = new Date(document.getElementById("end_date").value);
+            var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+            var duration = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            document.getElementById("duration").value = duration;
         }
     </script>
 </body>

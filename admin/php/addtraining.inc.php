@@ -7,16 +7,31 @@ if (isset($_POST['add'])) {
     $description = $_POST['description'];
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
-    $duration = $_POST['duration'];
+    
+    // Calculate duration
+    $start = new DateTime($start_date);
+    $end = new DateTime($end_date);
+    $interval = $start->diff($end);
+    $duration = $interval->format('%a'); // Format the duration as days
 
     $sql = "INSERT INTO `training` (`course`, `lecturer`, `description`, `start_date`, `end_date`, `duration`) 
             VALUES ('$course', '$lecturer', '$description', '$start_date', '$end_date', '$duration')";
     $res = mysqli_query($conn, $sql);
 
     if (!$res) {
-        echo "Error adding training course: " . mysqli_error($conn);
+        ?>
+        <script>
+            alert("Training could not be added");
+            window.location.replace("../viewtraining.php?");
+        </script>
+        <?php
     } else {
-        echo "Training course added successfully!";
+        ?>
+        <script>
+            alert("Training has been added successfully");
+            window.location.replace("../viewtraining.php");
+        </script>
+        <?php
     }
 }
 
@@ -26,7 +41,12 @@ if (isset($_POST['update'])) {
     $description = $_POST['description'];
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
-    $duration = $_POST['duration'];
+    
+    // Calculate duration
+    $start = new DateTime($start_date);
+    $end = new DateTime($end_date);
+    $interval = $start->diff($end);
+    $duration = $interval->format('%a'); // Format the duration as days
 
     $sql = "UPDATE `training` SET `course`='$course', `lecturer`='$lecturer', `description`='$description', 
             `start_date`='$start_date', `end_date`='$end_date', `duration`='$duration' WHERE course='$course'";
