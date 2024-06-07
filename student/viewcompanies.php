@@ -1,13 +1,12 @@
 <?php 
 include_once 'includes/head.php';
 include_once 'includes/nav.php';
+include_once '../includes/db.inc.php'; // Ensure the correct path to your database connection script
 
 // Start the session if it's not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Companies Details</title>
+    <title>Company Details</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         /* Add your custom styles here */
@@ -24,7 +23,7 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 <body>
 
-    <form action="php/viewcompies.php" method="POST">
+    <form action="php/viewcomp.inc.php" method="POST">
         <div class="container">
             <h1 class="mt-4">Company Details</h1>
             <?php 
@@ -33,9 +32,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 $student_name = mysqli_real_escape_string($conn, $_GET['student_name']);
                 // Modify the SQL query to filter data based on the current user's username
                 $user = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-                $sql = "SELECT * FROM applied WHERE usn='$usn' AND student_name='$student_name' AND student_name='$user';";
+                $sql = "SELECT * FROM applied WHERE usn='$usn' AND student_name='$student_name';";
                 $res = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($res) > 0) {
+
+                if ($res && mysqli_num_rows($res) > 0) {
                     while ($row = mysqli_fetch_assoc($res)) {
                         echo '<div class="form-group row">';
                         echo '<label for="usn" class="col-sm-2 col-form-label">USN</label>';
