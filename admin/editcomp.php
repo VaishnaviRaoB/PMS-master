@@ -20,14 +20,27 @@ if (isset($_GET['edit'])) {
         $update_sql = "UPDATE company SET name=?, type=?, website=?, number=?, status=? WHERE name=?";
         $update_stmt = $conn->prepare($update_sql);
         $update_stmt->bind_param("ssssss", $new_name, $type, $website, $number, $status, $name);
-        $update_stmt->execute();
+        $update_result = $update_stmt->execute();
 
-        header("Location: viewcompanies.php");
-        exit();
+        // Display success message and redirect to viewcompanies.php
+        if ($update_result) {
+            ?>
+            <script>
+                alert("Company updated successfully!");
+                window.location.href = "viewcompanies.php";
+            </script>
+            <?php
+            exit(); // Ensure script execution stops here to prevent further processing
+        } else {
+            ?>
+            <script>
+                alert("Company could not be updated");
+                window.location.href = "editcompany.php?edit=<?php echo urlencode($name); ?>";
+            </script>
+            <?php
+            exit(); // Ensure script execution stops here to prevent further processing
+        }
     }
-} else {
-    header("Location: view_companies.php");
-    exit();
 }
 ?>
 
@@ -55,7 +68,6 @@ if (isset($_GET['edit'])) {
             <div class="form-group">
                 <label for="website">Website</label>
                 <input type="url" pattern="^(https?:\/\/|www\.)[^\s$.?#].[^\s]*$" class="form-control" id="website" name="website" value="<?php echo htmlspecialchars($company['website']); ?>" required>
-                
             </div>
             <div class="form-group">
                 <label for="number">Phone</label>

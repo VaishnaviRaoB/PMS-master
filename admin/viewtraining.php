@@ -83,7 +83,7 @@
     </style>
 </head>
 <body>
-    <?php include_once 'includes/nav.php' ?>
+    <?php include_once 'includes/nav.php'; ?>
     <div class="container" style="z-index: 2;">
         <h1 class="form-row justify-content-center mt-4">View Trainings</h1>
         <div class="search-container mt-4">
@@ -108,10 +108,8 @@
                     </thead>
                     <tbody>
                         <?php
-                        // Include your database connection file
                         include_once 'includes/db.inc.php';
 
-                        // Check if search query is set
                         if (isset($_GET['search'])) {
                             $search = mysqli_real_escape_string($conn, $_GET['search']);
                             $sql = "SELECT * FROM training WHERE course LIKE '%$search%' OR lecturer LIKE '%$search%' OR description LIKE '%$search%';";
@@ -120,25 +118,26 @@
                         }
 
                         $res = mysqli_query($conn, $sql);
-                        $rescheck = mysqli_num_rows($res);
-
-                        if ($rescheck > 0) {
+                        if (mysqli_num_rows($res) > 0) {
                             while ($row = mysqli_fetch_assoc($res)) {
                                 echo '<tr>';
-                                echo '<td>' . $row['course'] . '</td>';
-                                echo '<td>' . $row['lecturer'] . '</td>';
-                                echo '<td>' . $row['description'] . '</td>';
-                                echo '<td>' . $row['start_date'] . '</td>';
-                                echo '<td>' . $row['end_date'] . '</td>';
-                                echo '<td>' . $row['duration'] . '</td>';
+                                echo '<td>' . htmlspecialchars($row['course']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['lecturer']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['description']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['start_date']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['end_date']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['duration']) . '</td>';
                                 ?>
                                 <td>
-                                    <a href="edittraining.php?edit=<?php echo $row['course']; ?>" class="btn btn-sm btn-outline-primary" name="edit"><i class="fas fa-pen"></i></a>
-                                    <a href="php/crud.php?delete=<?php echo $row['course']; ?>" class="btn btn-sm btn-outline-danger" name="delete"><i class="fas fa-trash"></i></a>
-                                </td>
-                                <?php
-                                echo '</tr>';
-                            }
+
+                                <a href="edittraining.php?edit=<?php echo urlencode($row['course']); ?>" class="btn btn-sm btn-outline-primary"><i class="fas fa-pen"></i></a>
+
+                                <a href="php/crud.php?delete1=<?php echo urlencode($row['course']); ?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+
+                            <?php
+                            echo '</tr>';
+                        }
                         } else {
                             echo '<tr><td colspan="7" class="no-trainings">No trainings found.</td></tr>';
                         }
@@ -148,6 +147,6 @@
             </div>
         </div>
     </div>
-    <?php include_once 'includes/footer.php' ?>
+    <?php include_once 'includes/footer.php'; ?>
 </body>
 </html>

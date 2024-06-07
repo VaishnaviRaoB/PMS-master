@@ -10,13 +10,20 @@ if (isset($_POST['update'])) {
     $duration = $_POST['duration'];
 
     // Use course name to identify the record to update
-    $sql = "UPDATE training SET lecturer='$lecturer', description='$description', start_date='$start_date', end_date='$end_date', duration='$duration' WHERE course='$course'";
-    $res = mysqli_query($conn, $sql);
-
-    if (!$res) {
-        echo "<script>alert('Training course could not be updated'); window.location.replace('../edittraining.php?result=fail');</script>";
+    $sql = "UPDATE training SET lecturer=?, description=?, start_date=?, end_date=?, duration=? WHERE course=?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("ssssds", $lecturer, $description, $start_date, $end_date, $duration, $course);
+        $stmt->execute();
+        $stmt->close();
+        
+        // Display alert message using JavaScript
+        echo "<script>alert('Training course has been updated'); window.location.href = '../viewtraining.php?result=success';</script>";
+        exit(); // Ensure script execution stops here
     } else {
-        echo "<script>alert('Training course has been updated'); window.location.replace('../viewtrainings.php?result=success');</script>";
+        // Display alert message if update fails
+        echo "<script>alert('Training course could not be updated'); window.location.href = '../edittraining.php?result=fail';</script>";
+        exit(); // Ensure script execution stops here
     }
 }
 ?>
