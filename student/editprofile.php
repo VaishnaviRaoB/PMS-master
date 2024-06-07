@@ -64,8 +64,7 @@ if (!empty($user)) {
                 <div class="center one">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                           
-                            <label for="cid">Student ID</label>
+                            <label for="usn">Student ID</label>
                             <input type="text" class="form-control" id="usn" name="usn" value="<?php echo $row['usn']; ?>">
                         </div>
                         <div class="form-group col-md-6">
@@ -146,5 +145,7 @@ if (!empty($user)) {
             </div>
         </form>
     </div>
+    <?php include_once 'includes/footer.php' ?>
 </body>
 </html>
+
