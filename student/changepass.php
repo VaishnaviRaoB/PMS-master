@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
-<head>
-<?php include_once 'includes/nav.php'; ?>
+  <head>
+    
+
     <?php include_once 'includes/head.php'; ?>
     <?php include_once 'includes/footer.php'; ?> 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -10,46 +12,51 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/change.css">
-
-</head>
-<body>
-<div>
-        <img id="img2" src="../images/editicon.png" width="650px" style="position: absolute; position: fixed; z-index: 1; 
-        margin-left: 55%; margin-top: 13vh;">
+    <title>Change Password</title>
+  </head>
+  <body>
+    <div>
+      <img id="img2" src="../images/pass.png" width="550px" style="position: absolute; position: fixed; z-index: 1; margin-left: 50%;
+       margin-top: 20vh;">
     </div>
-    
+    <img src="../images/aboutbg.png" id="img1" style="position: fixed;">
+    <?php include_once 'includes/nav.php'; ?>
     <div class="content">
-        <h1 align="center">Change Password</h1>
-        <div class="row justify-content-center">
-            <form action="php/changepass.inc.php" method="POST" onsubmit="return validateForm()">
-                <div class="center">
-                    <div class="form-group">
-                        <label>Enter New Password</label>
-                        <input type="password" class="form-control" name="pwd1" id="pwd1" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Confirm New Password</label>
-                        <input type="password" class="form-control" name="pwd2" id="pwd2" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" name="change">Change Password</button>
-                </div>
-            </form>
+        <br> <br> 
+    <h1 align="center" style="margin-left: 50px;">Change Password</h1> <br>
+    <br><br>
+    <div class="row justify-content-center">
+    <form action="php/changepass.inc.php" method="POST">
+
+    <?php
+
+    include_once '../includes/db.inc.php';
+
+      ?>
+    <div class="center">
+      <div class="form-group ">
+        <label>Enter Password</label>
+        <input type="password" class="form-control" id="id" name="pwd1">
         </div>
+      <div class="form-group ">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" id="itemname" name="pwd2">
+        </div>
+
+
+      <button type="submit" class="btn" name="change" style=" color: white;
+									font-weight: bold; background: linear-gradient(to left, #4181ED, #3F4261);">Change Password</button>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </form>
+</div>
+</div>
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <script>
-        function validateForm() {
-            var pwd1 = document.getElementById("pwd1").value;
-            var pwd2 = document.getElementById("pwd2").value;
-            if (pwd1 !== pwd2) {
-                alert("Passwords do not match");
-                return false;
-            }
-            // You can add more complex validation here if needed
-            return true;
-        }
+      $(document).ready(function() {
+         $("#add").removeClass("active");
+        $("#change").addClass("active");
+        
+      });
     </script>
-</body>
+  </body>
 </html>

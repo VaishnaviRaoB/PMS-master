@@ -34,9 +34,10 @@
          
     </ul>
    
-     <form class="form-inline my-2 my-lg-0">
-          <li class="nav-item dropdown" style="list-style: none;">
-          <button class="btn btn-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: 0 none;">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <button class="btn btn-light dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: 0 none;">
             <i class="far fa-user-circle" style="font-size: 20px;"></i>&nbsp;<?php echo $_SESSION['username']; ?>
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -46,6 +47,6 @@
             <a class="dropdown-item" href="../login.php">Logout</a>
           </div>
         </li>
-      </form>
-  </div>
+      </ul>
+    </div>
 </nav>

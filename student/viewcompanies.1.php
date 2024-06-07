@@ -1,7 +1,4 @@
 
-<?php include_once 'includes/head.php'; ?>
-<?php include_once 'includes/nav.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>View Companies</title>
     <link rel="stylesheet" type="text/css" href="css/reg.css">
-
+    <?php include_once 'includes/head.php'; ?>
     <style>
         .search-container {
             display: flex;
@@ -88,7 +85,7 @@
     </style>
 </head>
 <body>
-
+<?php include_once 'includes/nav.php'; ?>
     <div class="container" style="z-index: 2;">
         <h1 class="form-row justify-content-center mt-4">Companies</h1>
         <div class="search-container mt-4">

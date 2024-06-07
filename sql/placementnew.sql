@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2024 at 08:33 PM
+-- Generation Time: Jun 07, 2024 at 10:10 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -199,7 +199,7 @@ CREATE TABLE `studentlogin` (
 --
 
 INSERT INTO `studentlogin` (`usn`, `uname`, `pwd`, `fname`, `lname`, `email`, `phone`, `secque`, `secans`, `course`, `branch`, `percentage`, `yop`, `sslc`, `puc`) VALUES
-('USN001', 'student1', 'stud123', 'Alice', 'Wonderland', 'alice@example.com', '1234509876', 'Pet name', 'Fluffy', 'B.Tech', 'CSE', '85', '2024', '90', '92'),
+('USN001', 'student1', 'stud321', 'Alice', 'Wonderland', 'alice@example.com', '1234509876', 'Pet name', 'Fluffy', 'B.Tech', 'CSE', '85', '2024', '90', '92'),
 ('USN002', 'student2', 'stud456', 'Bob', 'Builder', 'bob@example.com', '2345610987', 'maiden name', 'Smith', 'B.Tech', 'ECE', '80', '2024', '85', '88'),
 ('USN003', 'student3', 'stud789', 'Charlie', 'Chocolate', 'charlie@example.com', '3456721098', 'First school', 'Greenwood', 'B.Tech', 'EEE', '78', '2024', '88', '86'),
 ('USN004', 'student4', 'stud321', 'David', 'Copperfield', 'david@example.com', '4567832109', 'Favorite book', 'Harry Potter', 'B.Tech', 'ME', '82', '2024', '87', '89'),
@@ -225,11 +225,11 @@ CREATE TABLE `training` (
 --
 
 INSERT INTO `training` (`course`, `lecturer`, `description`, `start_date`, `end_date`, `duration`) VALUES
-('Data Structures', 'Dr. Smiths', 'In-depth study of data structures.', '2024-06-10', '2024-07-10', 30),
 ('Algorithms', 'Dr. Johnson', 'Algorithm design and analysis.', '2024-06-15', '2024-07-15', 30),
-('Operating Systems', 'Prof. Browns', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30),
+('Data Structures', 'Dr. Smiths', 'In-depth study of data structures.', '2024-06-10', '2024-07-10', 30),
 ('Database Management', 'Dr. White', 'Database systems and SQL.', '2024-06-25', '2024-07-25', 30),
-('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30);
+('Machine Learning', 'Prof. Black', 'Introduction to machine learning.', '2024-06-30', '2024-07-30', 30),
+('Operating Systems', 'Prof. Browns', 'Operating system concepts.', '2024-06-20', '2024-07-20', 30);
 
 --
 -- Indexes for dumped tables
@@ -258,7 +258,19 @@ ALTER TABLE `company`
 -- Indexes for table `join_course`
 --
 ALTER TABLE `join_course`
-  ADD PRIMARY KEY (`id`);
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `studentlogin`
+--
+ALTER TABLE `studentlogin`
+  ADD PRIMARY KEY (`usn`);
+
+--
+-- Indexes for table `training`
+--
+ALTER TABLE `training`
+  ADD PRIMARY KEY (`course`);
 
 --
 -- AUTO_INCREMENT for dumped tables
